@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { createBrowserHistory } from "history";
+import { Router } from "react-router";
+import { HomeTemplate } from "./templates/HomeTemplate/HomeTemplate";
+import Home from "./pages/Home/Home";
+import Contact from "./pages/Contact/Contact";
+import News from "./pages/News/News";
+import { Route } from "react-router";
+import Login from "./pages/Logins/Login";
+import Register from "./pages/Register/Register";
+
+export const history = createBrowserHistory();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Router history={history}>
+        <switch>
+          <HomeTemplate path="/home" exact Component={Home} />
+          <HomeTemplate path="/contact" exact Component={Contact} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/register" exact component={Register} />
+          <HomeTemplate path="/news" exact Component={News} />
+          <HomeTemplate path="/" exact Component={Home} />
+        </switch>
+      </Router>
     </div>
   );
 }
