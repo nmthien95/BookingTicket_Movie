@@ -1,0 +1,11 @@
+.text-header {
+  color: #000;
+  cursor: pointer;
+  padding: 0px 16px;
+  transition: all 0.3s;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.text-header:hover {
+  @apply text-lime-500;
+}

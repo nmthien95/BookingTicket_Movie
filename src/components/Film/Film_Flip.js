@@ -1,6 +1,7 @@
 import React from "react";
 import "./Film_Flip.css";
 import { PlayCircleOutlined } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
 
 export default function Film_Flip(props) {
   const { item } = props;
@@ -47,7 +48,9 @@ export default function Film_Flip(props) {
           </div>
         </div>
       </div>
-      <div className="btn-datVe">Đặt vé</div>
+      <NavLink to={`/detail/${item.maPhim}`} className="btn-datVe">
+        Đặt vé
+      </NavLink>
     </div>
   );
 }

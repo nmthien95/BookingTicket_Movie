@@ -1,9 +1,9 @@
 .flip-card {
   background-color: transparent;
-
-  width: 300px;
+  width: 100%;
   height: 300px;
 
+  padding: 0 1rem 1rem;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   margin-bottom: 5rem;
 }
@@ -46,5 +46,6 @@
   transform: rotateY(180deg);
 }
 .btn-datVe {
-  @apply text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 ease-in duration-300 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-3;
+  display: block;
+  @apply text-gray-800 hover:text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 ease-in duration-300 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-3;
 }

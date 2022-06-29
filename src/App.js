@@ -8,6 +8,7 @@ import News from "./pages/News/News";
 import { Route } from "react-router";
 import Login from "./pages/Logins/Login";
 import Register from "./pages/Register/Register";
+import Detail from "./pages/Detail.js/Detail";
 
 export const history = createBrowserHistory();
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <HomeTemplate path="/news" exact Component={News} />
+          <HomeTemplate path="/detail/:id" exact Component={Detail} />
           <HomeTemplate path="/" exact Component={Home} />
         </switch>
       </Router>

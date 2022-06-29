@@ -51,37 +51,69 @@ const MultipleRowSlick = (props) => {
 
   const settings = {
     className: "center variable-width",
-    centerMode: true,
+    centerMode: false,
     infinite: true,
     centerPadding: "60px",
-    slidesToShow: 2,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     speed: 500,
     rows: 2,
-    slidesPerRow: 2,
+    dots: true,
     variableWidth: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          arrows: false,
+          autoplay: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          arrows: false,
+          autoplay: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          autoplay: true,
+        },
+      },
+    ],
   };
   return (
     <div>
       <div className="text-center  mb-7">
         <div className="inline-flex">
           <button
-            className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-4 overflow-hidden text-sm font-medium text-gray-900 rounded-md group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900  dark:focus:ring-lime-800"
+            className=" mr-2 relative inline-flex items-center justify-center  mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900  dark:focus:ring-lime-800 "
             onClick={() => {
               dispatch({ type: SET_FILM_DANG_CHIEU });
             }}
           >
             <span
-              className={`relative px-5 py-2.5 transition-all ease-in duration-75 bg-teal-100 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassDC]}`}
+              className={`relative px-5 py-2.5 transition-al inline-block ease-in duration-75 bg-teal-100 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassDC]}`}
             >
               PHIM ĐANG CHIẾU
             </span>
           </button>
 
-          <button className="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900  dark:focus:ring-lime-800">
+          <button className="relative inline-flex items-center justify-center  mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900  dark:focus:ring-lime-800">
             <span
-              className={`relative px-5 py-2.5 transition-all ease-in duration-75 bg-teal-100 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassSP]}`}
+              className={`relative px-5 py-2.5 transition-all inline-block ease-in duration-75 bg-teal-100 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassSP]}`}
               onClick={() => {
                 dispatch({ type: SET_FILM_SAP_CHIEU });
               }}

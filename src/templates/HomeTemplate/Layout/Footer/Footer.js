@@ -1,8 +1,20 @@
 import React from "react";
+import "./Footer.css";
+
+import { useSelector } from "react-redux";
+import _ from "lodash";
 
 export default function Footer(props) {
+  const { heThongRapChieu } = useSelector((state) => state.QuanLyRapReducer);
+  console.log("heThongRapChieu: ", heThongRapChieu);
+
+  const arrHeThongRap = _.map(heThongRapChieu, (heThongRap) =>
+    _.pick(heThongRap, ["maHeThongRap", "tenHeThongRap", "logo"])
+  );
+  console.log("arrHeThongRap: ", arrHeThongRap);
+
   return (
-    <footer className="px-4 divide-y dark:bg-gray-800 dark:text-gray-100 bg-gray-200 ">
+    <footer className="px-4 divide-y bg-gradient-to-r from-teal-200 to-lime-200 ease-in duration-300 ">
       <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
         <div className="lg:w-1/3">
           <a
@@ -28,29 +40,16 @@ export default function Footer(props) {
         <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
           <div className="space-y-3">
             <h3 className="tracking-wide uppercase dark:text-gray-50">
-              Product
+              PARTNER
             </h3>
-            <ul className="space-y-1">
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Integrations
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#">
-                  FAQ
-                </a>
-              </li>
+            <ul className="space-y-1 flex flex-wrap">
+              {arrHeThongRap.map((item, index) => {
+                return (
+                  <li key={index} className="basis-1/4 p-2">
+                    <img src={item.logo} className="w-full" />
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="space-y-3">
