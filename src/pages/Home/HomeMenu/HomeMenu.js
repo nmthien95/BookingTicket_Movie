@@ -82,7 +82,9 @@ export default function HomeMenu(props) {
                             </div>
                             <div className="tab-movie-content grow px-3">
                               <h2 className="text-lg font-medium	">
-                                <span className="movie-id">{phim.maPhim}</span>
+                                <span className="movie-id bg-orange-600">
+                                  {phim.maPhim}
+                                </span>
                                 {phim.tenPhim}
                               </h2>
                               <div className="movie-schedule">

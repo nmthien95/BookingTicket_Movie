@@ -54,7 +54,7 @@ export default function Detail(props) {
           </div>
           <div className="col-span-4">
             <div className="ml-10 ">
-              <h3 className="  text-orange-400 text-lg font-bold pl-20 text-left m-0">
+              <h3 className="  text-orange-600 text-lg font-bold pl-20 text-left m-0">
                 Đánh giá
               </h3>
               <Rate
@@ -63,7 +63,6 @@ export default function Detail(props) {
                 style={{ paddingLeft: "3.2rem", display: "block" }}
                 value={filmDetal.danhGia / 2}
               />
-
               <div className={`c100 p${filmDetal.danhGia * 10} big  `}>
                 <span>{filmDetal.danhGia * 10}%</span>
                 <div className="slice">
@@ -124,7 +123,7 @@ export default function Detail(props) {
                                       .map((lichChieu, index) => {
                                         return (
                                           <NavLink
-                                            to="/"
+                                            to={`/checkout/${lichChieu.maLichChieu}`}
                                             key={index}
                                             className="col-span-1 text-lime-500 font-bold"
                                           >

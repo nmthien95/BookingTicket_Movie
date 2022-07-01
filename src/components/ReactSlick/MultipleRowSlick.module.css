@@ -9,9 +9,10 @@
 }
 
 .active-btn-film {
-  @apply bg-opacity-0;
+  @apply bg-opacity-0 text-slate-50;
 }
 
 .none-active-btn-film {
-  @apply bg-teal-200;
+  @apply text-slate-50 bg-orange-500;
+  /* background: linear-gradient(to right, #fbbd61, #ec7532); */
 }

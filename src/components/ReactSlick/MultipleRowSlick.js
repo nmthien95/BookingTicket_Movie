@@ -58,13 +58,14 @@ const MultipleRowSlick = (props) => {
     slidesToScroll: 4,
     speed: 500,
     rows: 2,
+
     dots: true,
     variableWidth: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -99,21 +100,21 @@ const MultipleRowSlick = (props) => {
       <div className="text-center  mb-7">
         <div className="inline-flex">
           <button
-            className=" mr-2 relative inline-flex items-center justify-center  mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900  dark:focus:ring-lime-800 "
+            className=" mr-2 relative inline-flex items-center justify-center  mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-r from-green-400 to-blue-400  "
             onClick={() => {
               dispatch({ type: SET_FILM_DANG_CHIEU });
             }}
           >
             <span
-              className={`relative px-5 py-2.5 transition-al inline-block ease-in duration-75 bg-teal-100 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassDC]}`}
+              className={`relative px-5 py-2.5 transition-al inline-block ease-in duration-75  rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassDC]}`}
             >
               PHIM ĐANG CHIẾU
             </span>
           </button>
 
-          <button className="relative inline-flex items-center justify-center  mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900  dark:focus:ring-lime-800">
+          <button className="relative inline-flex items-center justify-center  mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-r from-green-400 to-blue-400    ">
             <span
-              className={`relative px-5 py-2.5 transition-all inline-block ease-in duration-75 bg-teal-100 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassSP]}`}
+              className={`relative px-5 py-2.5 transition-all inline-block ease-in duration-75  rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassSP]}`}
               onClick={() => {
                 dispatch({ type: SET_FILM_SAP_CHIEU });
               }}

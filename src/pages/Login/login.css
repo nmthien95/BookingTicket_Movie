@@ -1,0 +1,9 @@
+.login-1 {
+  padding: 32px;
+  background: url("http://demo1.cybersoft.edu.vn/static/media/backapp.b46ef3a1.jpg");
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+}
