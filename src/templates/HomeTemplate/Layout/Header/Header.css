@@ -1,11 +1,27 @@
 .text-header {
-  color: #000;
+  @apply text-slate-800 flex items-center px-4 font-medium;
   cursor: pointer;
   padding: 0px 16px;
   transition: all 0.3s;
   text-decoration: none;
   font-size: 1rem;
+  position: relative;
 }
-.text-header:hover {
-  @apply text-lime-500;
+.text-header-active {
+  transition: all 0.3s;
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+}
+.text-header:hover .text-header-active {
+  width: 100%;
+}
+
+.text-header-classActive .text-header-active {
+  width: 100%;
+}
+.text-theme-hover:hover {
+  @apply hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 hover:bg-clip-text hover:text-transparent;
 }

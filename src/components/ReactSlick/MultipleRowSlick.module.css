@@ -1,18 +1,25 @@
-.slick-prev:before,
-.slick-next:before {
-  color: gray !important;
-  font-size: 3rem !important;
+.my-slick .slick-dots li button {
+  padding: 0;
+}
+.my-slick {
+  padding: 0;
+}
+.my-slick .slick-dots li button:before {
+  width: 50px;
+  height: 50px;
 }
 
 .width-item {
   width: 100% !important;
 }
 
-.active-btn-film {
-  @apply bg-opacity-0 text-slate-50;
+.active-btn-filmDC {
+  z-index: 1;
+  transform: translateX(0%);
 }
 
-.none-active-btn-film {
-  @apply text-slate-50 bg-orange-500;
+.active-btn-filmSC {
+  z-index: 1;
+  transform: translateX(100%);
   /* background: linear-gradient(to right, #fbbd61, #ec7532); */
 }

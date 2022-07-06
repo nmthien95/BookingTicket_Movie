@@ -1,0 +1,69 @@
+.ghe-1 {
+  width: 35px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  min-width: unset;
+  border-radius: 5px;
+  padding: 6px 8px;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.875rem;
+  background-color: rgb(233, 233, 233);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  vertical-align: middle;
+  outline: 0;
+  position: relative;
+}
+.ghe-1:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.ghe-2 {
+  background-color: orange;
+}
+.ghe-3 {
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+.ghe-4 {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+.ghe-5 {
+  cursor: no-drop !important;
+  pointer-events: none;
+  background-color: rgb(118, 118, 118) !important;
+}
+.ghe-6 {
+  background-color: rgb(17, 143, 17) !important;
+}
+.ghe-7 {
+  background-color: rgb(246, 246, 246) !important;
+  -webkit-box-shadow: -1px 2px 18px -6px orange;
+  box-shadow: -1px 2px 18px -6px orange;
+  color: orange;
+  border: 1px solid #000;
+}

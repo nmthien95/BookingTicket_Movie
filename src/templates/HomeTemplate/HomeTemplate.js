@@ -11,13 +11,13 @@ export const HomeTemplate = (props) => {
       render={(propsRoute) => {
         //props.location, props.history,props.match
         return (
-          <Fragment>
+          <div className="bg-home-page">
             <Header {...propsRoute} />
 
             <Component {...propsRoute} />
 
             <Footer />
-          </Fragment>
+          </div>
         );
       }}
     />

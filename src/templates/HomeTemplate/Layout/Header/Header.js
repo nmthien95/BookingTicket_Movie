@@ -1,12 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
+import { LoginOutlined, UserAddOutlined } from "@ant-design/icons";
 
 export default function Header() {
   return (
     <div>
       <header
-        className="px-4 fixed w-full z-10 text-white"
+        className="px-4 fixed w-full z-50 text-white"
         style={{
           backgroundColor: "rgba(255,255,255,.9)",
           boxShadow:
@@ -17,69 +18,75 @@ export default function Header() {
           <NavLink
             to="/home"
             rel="noopener noreferrer"
-            className="flex items-center px-4 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 hover:bg-clip-text hover:text-transparent font-extrabold text-transparent px-4 text-4xl  bg-clip-text bg-gradient-to-r from-teal-400 to-lime-400 "
+            className="flex items-center hover:bg-gradient-to-r hover:from-teal-400 hover:to-lime-400 hover:bg-clip-text hover:text-transparent font-extrabold text-transparent px-4 text-4xl  bg-clip-text bg-gradient-to-r from-teal-400 to-lime-400 "
           >
             Movie Start
           </NavLink>
           <ul className="items-stretch hidden space-x-3 lg:flex mb-0">
-            <li className="flex">
+            <li className="flex ">
               <NavLink
                 to="/home"
                 rel="noopener noreferrer"
-                className="flex items-center px-4   text-header"
-                activeClassName="border-b-2 border-lime-400	"
+                className="  text-theme-hover text-header"
+                activeClassName="text-header-classActive"
               >
-                Home
+                Lịch chiếu
+                <div className="text-header-active btn-theme"></div>
               </NavLink>
             </li>
             <li className="flex">
               <NavLink
                 to="/contact"
                 rel="noopener noreferrer"
-                className="flex items-center px-4   dark:border-transparent  text-header"
-                activeClassName="border-b-2 border-lime-400	"
+                className="text-theme-hover text-header"
+                activeClassName="text-header-classActive"
               >
-                Contact
+                Cụm Rạp
+                <div className="text-header-active btn-theme"></div>
               </NavLink>
             </li>
             <li className="flex">
               <NavLink
                 to="/news"
                 rel="noopener noreferrer"
-                className="flex items-center px-4  dark:border-transparent text-header"
-                activeClassName="border-b-2 border-lime-400	"
+                className="text-theme-hover text-header"
+                activeClassName="text-header-classActive	"
               >
-                News
+                Tin Tức
+                <div className="text-header-active btn-theme"></div>
               </NavLink>
             </li>
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex">
-            <button className="self-center p-2 font-semibold rounded text-center bg-gradient-to-r from-teal-300 to-lime-300 ease-in duration-300 hover:bg-gradient-to-l hover:from-teal-300 hover:to-lime-300 focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-teal-700">
+            <button className="self-center p-1  border-r-2  border-slate-400 text-center">
               <NavLink
                 to="/login"
                 rel="noopener noreferrer"
-                className="flex items-center px-4   text-black  hover:text-black"
+                className="flex items-center px-4 font-bold  text-md  text-slate-500 hover:text-slate-900 "
               >
-                Sign in
+                <LoginOutlined className="mr-1" />
+                Đăng nhập
               </NavLink>
             </button>
-            <button className="self-center p-2 font-semibold rounded ml-2 text-center bg-gradient-to-l from-teal-300 to-lime-300 ease-in duration-300 hover:bg-gradient-to-r hover:from-teal-300 hover:to-lime-300 focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-teal-700">
+
+            <button className="self-center p-1  ml-2 text-center bg-transparent">
               <NavLink
                 to="/"
                 rel="noopener noreferrer"
-                className="flex items-center px-4  text-black hover:text-black"
+                className="flex items-center px-4 font-bold text-md text-slate-500      hover:text-slate-900"
               >
-                Sign up
+                <UserAddOutlined className="mr-1" />
+                Đăng kí
               </NavLink>
             </button>
           </div>
-          <button className="p-4 lg:hidden">
+          <button className="p-3  text-gray-800   hover:text-gray-900 lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="w-6 h-6 dark:text-gray-100"
+              className="w-6 h-6 "
             >
               <path
                 strokeLinecap="round"

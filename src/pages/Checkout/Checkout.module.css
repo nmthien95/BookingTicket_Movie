@@ -7,6 +7,14 @@
   opacity: 0.2;
 
   margin: 0 auto;
+}
+.trapezoid-shadow {
+  position: absolute;
+  bottom: -30px;
+  left: 0%;
+
+  height: 30px;
+  width: 100%;
   filter: grayscale(12%) sepia(23%) brightness(90%)
     drop-shadow(0px 43px 28px rgba(103, 97, 97, 0.6));
   -webkit-filter: grayscale(12%) sepia(23%) brightness(90%)

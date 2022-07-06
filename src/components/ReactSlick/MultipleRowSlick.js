@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import Film from "../Film/Film";
+
 import styleSlick from "./MultipleRowSlick.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import Film_Flip from "../Film/Film_Flip";
@@ -8,40 +8,22 @@ import {
   SET_FILM_DANG_CHIEU,
   SET_FILM_SAP_CHIEU,
 } from "../../redux/types/QuanLyPhimType";
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} ${styleSlick["slick-prev"]}`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    ></div>
-  );
-}
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} ${styleSlick["slick-prev"]}`}
-      style={{ ...style, display: "block", left: "-50px" }}
-      onClick={onClick}
-    ></div>
-  );
-}
 
 const MultipleRowSlick = (props) => {
   const dispatch = useDispatch();
   const { dangChieu, sapChieu } = useSelector(
     (state) => state.QuanLyPhimReducer
   );
-  let activeClassDC =
-    dangChieu === true ? "active-btn-film" : "none-active-btn-film";
-  let activeClassSP =
-    sapChieu === true ? "active-btn-film" : "none-active-btn-film";
+
+  let activeClass = () => {
+    if (dangChieu === true && sapChieu === false) {
+      return "active-btn-filmDC";
+    }
+    return "active-btn-filmSC";
+  };
   const renderFilm = () => {
     return props.arrFilm.slice(0, 12).map((item, index) => {
       return (
-        // className={`${styleSlick['width-item']}`}
         <div key={index}>
           <Film_Flip item={item} />
         </div>
@@ -50,7 +32,7 @@ const MultipleRowSlick = (props) => {
   };
 
   const settings = {
-    className: "center variable-width",
+    className: "center variable-width ",
     centerMode: false,
     infinite: true,
     centerPadding: "60px",
@@ -58,9 +40,10 @@ const MultipleRowSlick = (props) => {
     slidesToScroll: 4,
     speed: 500,
     rows: 2,
-
+    arrows: false,
     dots: true,
     variableWidth: true,
+    autoplay: true,
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -70,8 +53,6 @@ const MultipleRowSlick = (props) => {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          arrows: false,
-          autoplay: true,
         },
       },
       {
@@ -80,8 +61,6 @@ const MultipleRowSlick = (props) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-          arrows: false,
-          autoplay: true,
         },
       },
       {
@@ -89,39 +68,37 @@ const MultipleRowSlick = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false,
-          autoplay: true,
         },
       },
     ],
   };
   return (
-    <div>
+    <div className={'${styleSlick["my-slick"]}'}>
       <div className="text-center  mb-7">
-        <div className="inline-flex">
-          <button
-            className=" mr-2 relative inline-flex items-center justify-center  mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-r from-green-400 to-blue-400  "
-            onClick={() => {
-              dispatch({ type: SET_FILM_DANG_CHIEU });
-            }}
-          >
-            <span
-              className={`relative px-5 py-2.5 transition-al inline-block ease-in duration-75  rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassDC]}`}
+        <div className="inline-flex w-max my-1  flex-shrink-0  p-1 btn-theme  rounded-xl ">
+          <div className="flex w-max   flex-shrink-0  bg-transparent rounded-xl relative">
+            <button
+              onClick={() => {
+                dispatch({ type: SET_FILM_DANG_CHIEU });
+              }}
+              className="px-2 py-1 w-30 lg:w-32 rounded-xl font-medium  hover:text-slate-800 z-10 relative duration-500 text-slate-700"
             >
-              PHIM ĐANG CHIẾU
-            </span>
-          </button>
-
-          <button className="relative inline-flex items-center justify-center  mb-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-r from-green-400 to-blue-400    ">
-            <span
-              className={`relative px-5 py-2.5 transition-all inline-block ease-in duration-75  rounded-md group-hover:bg-opacity-0 ${styleSlick[activeClassSP]}`}
+              Phim đang chiếu
+            </button>
+            <button
               onClick={() => {
                 dispatch({ type: SET_FILM_SAP_CHIEU });
               }}
+              className="px-2 py-1 w-30 lg:w-32 rounded-xl font-medium hover:text-slate-800  z-10 relative duration-500 text-slate-700"
             >
-              PHIM SẮP CHIẾU
-            </span>
-          </button>
+              Phim sắp chiếu
+            </button>
+            <span
+              className={`absolute left-0 top-0 w-24 lg:w-32 h-full  bg-white rounded-xl  transition ease-out duration-500 ${
+                styleSlick[activeClass()]
+              }`}
+            />
+          </div>
         </div>
       </div>
       <Slider {...settings}>{renderFilm()}</Slider>
