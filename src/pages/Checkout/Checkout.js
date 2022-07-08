@@ -11,8 +11,11 @@ import { DAT_VE } from "../../redux/types/QuanLyDatVeType";
 import _ from "lodash";
 import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
 import { UserOutlined } from "@ant-design/icons";
+import { Tabs } from "antd";
+import { layThongTinNGuoiDungAction } from "../../redux/action/QuanLyNguoiDungAction";
+import moment from "moment";
 
-export default function Checkout(props) {
+function Checkout(props) {
   const { chiTietPhongVe, danhSachGheDangDat } = useSelector(
     (state) => state.QuanLyDatVeReducer
   );
@@ -234,6 +237,110 @@ export default function Checkout(props) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+const { TabPane } = Tabs;
+const onChange = (key) => {
+  console.log(key);
+};
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function (props) {
+  return (
+    <div className="p-5">
+      <Tabs defaultActiveKey="1" onChange={onChange}>
+        <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
+          <Checkout {...props} />
+        </TabPane>
+        <TabPane tab="02 Kết quả đặt vé" key="2">
+          <KetQuaDatVe {...props} />
+        </TabPane>
+      </Tabs>
+    </div>
+  );
+}
+function KetQuaDatVe(props) {
+  const dispatch = useDispatch();
+  const { thongTinNguoiDung } = useSelector(
+    (state) => state.QuanLyNguoiDungReducer
+  );
+  console.log("thongTinNguoiDung: ", thongTinNguoiDung);
+
+  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  useEffect(() => {
+    dispatch(layThongTinNGuoiDungAction());
+  }, []);
+  const renderTicketItem = () => {
+    return thongTinNguoiDung.thongTinDatVe?.map((ticket, index) => {
+      const seats = _.first(ticket.danhSachGhe);
+      return (
+        <div className="py-8 px-4 lg:w-1/3 ">
+          <div
+            className="h-full flex items-start  p-2 "
+            style={{ boxShadow: "0 0 5px grey" }}
+          >
+            <div className="w-12 flex-shrink-0 flex flex-col text-center leading-none">
+              <span className="text-orange-400 pb-2 mb-2 border-b-2 border-gray-200">
+                {moment(ticket.ngayDat).format("MMMM")}
+              </span>
+              <span className="font-medium text-lg text-orange-700 title-font leading-none">
+                {moment(ticket.ngayDat).format("DD")}
+              </span>
+            </div>
+            <div className="flex-grow pl-6">
+              <div className="flex items-center">
+                <img
+                  className="h-16 w-16 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                  src={ticket.hinhAnh}
+                  alt=""
+                />
+                <div>
+                  <div className="flex-grow">
+                    <h1 className="title-font text-xl font-medium text-lime-500 mb-3">
+                      {ticket.tenPhim}
+                    </h1>
+                    <p className="text-gray-500 mt-2">
+                      <span className="text-gray-700 font-bold">
+                        Ngày, giờ chiếu:{" "}
+                      </span>
+                      {moment(ticket.ngayDat).format("DD-MM-YY")} -{" "}
+                      {moment(ticket.ngayDat).format("hh:mm A ")}
+                    </p>
+                    <p>
+                      <span className="text-gray-700 font-bold">
+                        Địa điểm:{" "}
+                      </span>
+                      {seats.tenHeThongRap}
+                    </p>
+                    <p>
+                      <span className="text-gray-700 font-bold">Tên rạp: </span>
+                      {seats.tenCumRap}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
+  return (
+    <div className="p-5">
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto">
+          <div className="flex flex-col text-center w-full mb-20">
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-theme">
+              Lịch sử đặt vé khách hàng
+            </h1>
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+              Hãy xem thông tin địa điểm và thời gian để xem phim vui vẻ bạn nhé
+            </p>
+          </div>
+          <div className="flex flex-wrap -mx-4 -my-8">{renderTicketItem()}</div>
+        </div>
+      </section>
     </div>
   );
 }

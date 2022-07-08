@@ -1,5 +1,8 @@
 import { quanLyNguoiDungService } from "../../services/QuanLyNguoiDung";
-import { DANG_NHAP } from "../types/QuanLyNguoiDungType";
+import {
+  DANG_NHAP,
+  SET_THONG_TIN_NGUOI_DUNG,
+} from "../types/QuanLyNguoiDungType";
 import { history } from "../../App";
 
 export const dangNhapAction = (thongtinDangNhap) => {
@@ -14,6 +17,24 @@ export const dangNhapAction = (thongtinDangNhap) => {
         });
         //Chuyển hướng về trang trước đó
         history.goBack();
+      }
+
+      console.log("result", result);
+    } catch (error) {
+      console.log("error", error.response);
+    }
+  };
+};
+export const layThongTinNGuoiDungAction = (thongtinDangNhap) => {
+  return async (dispatch) => {
+    try {
+      const result = await quanLyNguoiDungService.layThongTinNguoiDung();
+      if (result.data.statusCode === 200) {
+        console.log(result);
+        dispatch({
+          type: SET_THONG_TIN_NGUOI_DUNG,
+          thongTinNguoiDung: result.data.content,
+        });
       }
 
       console.log("result", result);
