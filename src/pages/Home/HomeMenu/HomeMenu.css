@@ -63,6 +63,14 @@
   max-height: 720px;
   margin-bottom: 40px;
   border: 1px solid #e0e0e0;
+  background-color: rgba(246, 246, 246, 0.897);
 }
-.border-tap {
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: rgb(33, 163, 65) !important;
+}
+.ant-tabs-ink-bar {
+  background-color: rgb(33, 163, 65) !important ;
+}
+.ant-tabs-tab:hover {
+  color: rgb(19, 114, 47) !important;
 }

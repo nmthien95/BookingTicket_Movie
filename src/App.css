@@ -11,7 +11,7 @@ h4 {
   margin-bottom: 0;
 }
 .bg-home-page {
-  background-image: url(/public/img/background.b697469b.png);
+  background-image: url(/public/img/background-form.jpg);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -27,4 +27,9 @@ h4 {
 }
 .text-theme {
   @apply bg-gradient-to-r from-teal-500 to-lime-500 text-transparent bg-clip-text;
+}
+.slick-dots li button:before {
+  font-size: 10px !important;
+  /* opacity: 1 !important; */
+  color: rgb(45, 182, 45) !important;
 }

@@ -73,7 +73,7 @@ const MultipleRowSlick = (props) => {
     ],
   };
   return (
-    <div className={'${styleSlick["my-slick"]}'}>
+    <div>
       <div className="text-center  mb-7">
         <div className="inline-flex w-max my-1  flex-shrink-0  p-1 btn-theme  rounded-xl ">
           <div className="flex w-max   flex-shrink-0  bg-transparent rounded-xl relative">

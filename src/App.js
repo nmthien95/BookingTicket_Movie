@@ -11,14 +11,19 @@ import Register from "./pages/Register/Register";
 import Detail from "./pages/Detail.js/Detail";
 import { CheckoutTemplate } from "./templates/CheckoutTemplate/CheckoutTemplate";
 import Checkout from "./pages/Checkout/Checkout";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, Fragment } from "react";
 import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
+import Loading from "./components/Loading/Loading";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export const history = createBrowserHistory();
 
 function App() {
+  const { isLoading } = useSelector((state) => state.LoadingReducer);
   return (
     <div className="app">
+      <Fragment>{isLoading ? <Loading /> : ""}</Fragment>
       <Router history={history}>
         <Switch>
           <HomeTemplate path="/home" exact Component={Home} />

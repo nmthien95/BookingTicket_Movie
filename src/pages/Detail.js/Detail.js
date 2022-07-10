@@ -74,8 +74,11 @@ export default function Detail(props) {
           </div>
         </div>
         <div
-          className="mt-20 mb-10 w-2/3 mx-auto container bg-slate-100 px-5 py-5"
-          style={{ minHeight: 300 }}
+          className="mt-20 mb-10 w-2/3 mx-auto container  px-5 py-5"
+          style={{
+            minHeight: 300,
+            backgroundColor: "rgba(246, 246, 246, 0.897)",
+          }}
         >
           <Tabs defaultActiveKey="1" centered>
             <TabPane tab="Lịch chiếu" key="1">
@@ -125,7 +128,7 @@ export default function Detail(props) {
                                           <NavLink
                                             to={`/checkout/${lichChieu.maLichChieu}`}
                                             key={index}
-                                            className="col-span-1 text-lime-500 font-bold"
+                                            className="col-span-1  btn-movie-schedule text-teal-500 hover:text-lime-500"
                                           >
                                             {moment(
                                               lichChieu.ngayChieuGioChieu

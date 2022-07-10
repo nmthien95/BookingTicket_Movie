@@ -7,7 +7,11 @@ import {
 } from "../../redux/action/QuanLyDatVeAction";
 import style from "./Checkout.module.css";
 import "./Checkout.css";
-import { DAT_VE } from "../../redux/types/QuanLyDatVeType";
+import {
+  CHANGE_TAB_ACTIVE,
+  CHUYEN_TAB,
+  DAT_VE,
+} from "../../redux/types/QuanLyDatVeType";
 import _ from "lodash";
 import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
 import { UserOutlined } from "@ant-design/icons";
@@ -242,18 +246,27 @@ function Checkout(props) {
 }
 
 const { TabPane } = Tabs;
-const onChange = (key) => {
-  console.log(key);
-};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (props) {
+  const { tabActive } = useSelector((state) => state.QuanLyDatVeReducer);
+  const dispatch = useDispatch();
   return (
     <div className="p-5">
-      <Tabs defaultActiveKey="1" onChange={onChange}>
-        <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
+      <Tabs
+        defaultActiveKey={1}
+        activeKey={tabActive}
+        onChange={(key) => {
+          dispatch({
+            type: CHANGE_TAB_ACTIVE,
+            number: key,
+          });
+        }}
+      >
+        <TabPane tab="CHỌN GHẾ & THANH TOÁN" key="1">
           <Checkout {...props} />
         </TabPane>
-        <TabPane tab="02 Kết quả đặt vé" key="2">
+        <TabPane tab="Kết quả đặt vé" key="2">
           <KetQuaDatVe {...props} />
         </TabPane>
       </Tabs>
