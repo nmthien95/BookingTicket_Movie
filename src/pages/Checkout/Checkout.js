@@ -315,7 +315,11 @@ function KetQuaDatVe(props) {
                     </p>
                     <p>
                       <span className="text-gray-700 font-bold">Tên rạp: </span>
-                      {seats.tenCumRap}
+                      {seats.tenCumRap} -{" "}
+                      <span className="text-gray-700 font-bold">Gế: </span>{" "}
+                      {ticket.danhSachGhe.map((ghe, index) => {
+                        return <span key={index}>{ghe.tenGhe} </span>;
+                      })}
                     </p>
                   </div>
                 </div>
