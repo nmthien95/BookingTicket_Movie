@@ -67,3 +67,7 @@
   color: orange;
   border: 1px solid #000;
 }
+.ghe-8 {
+  background-color: rgb(242, 25, 191) !important;
+  cursor: no-drop;
+}

@@ -128,7 +128,7 @@ export default function Detail(props) {
                                           <NavLink
                                             to={`/checkout/${lichChieu.maLichChieu}`}
                                             key={index}
-                                            className="col-span-1  btn-movie-schedule text-teal-500 hover:text-lime-500"
+                                            className="col-span-1 mr-2 btn-movie-schedule text-teal-500 hover:text-lime-500"
                                           >
                                             {moment(
                                               lichChieu.ngayChieuGioChieu

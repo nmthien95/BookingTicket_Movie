@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  datGheAction,
+  datGheRealTimeAction,
   datVeAction,
   layChiTietPhongVeAction,
 } from "../../redux/action/QuanLyDatVeAction";
@@ -10,6 +12,7 @@ import "./Checkout.css";
 import {
   CHANGE_TAB_ACTIVE,
   CHUYEN_TAB,
+  DAT_GHE,
   DAT_VE,
 } from "../../redux/types/QuanLyDatVeType";
 import _ from "lodash";
@@ -18,27 +21,70 @@ import { UserOutlined } from "@ant-design/icons";
 import { Tabs } from "antd";
 import { layThongTinNGuoiDungAction } from "../../redux/action/QuanLyNguoiDungAction";
 import moment from "moment";
+import { connection } from "../../index";
 
 function Checkout(props) {
-  const { chiTietPhongVe, danhSachGheDangDat } = useSelector(
-    (state) => state.QuanLyDatVeReducer
-  );
+  const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachDat } =
+    useSelector((state) => state.QuanLyDatVeReducer);
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
-  console.log("chiTietPhongVe: ", chiTietPhongVe);
-  console.log("danhSachgheDangDat: ", danhSachGheDangDat);
+  console.log("danhSachGheKhachDat", danhSachGheKhachDat);
 
   const dispatch = useDispatch();
   useEffect(() => {
+    // vừa vào trang load tất cả ghế của các người khác đang đặt
+    connection.invoke("loadDanhSachGhe", props.match.params.id);
     // gọi hàm tạo ra 1 async function
     const action = layChiTietPhongVeAction(props.match.params.id);
     dispatch(action);
+    // Có 1 client nào thực hiện việc đặt vé thành công sẽ load lại danh sách phòng vé của lịch chiếu
+    connection.on("datVeThanhCong", () => {
+      dispatch(action);
+    });
+
+    //load danh sách ghế đang đặt từ sever về
+    connection.on("loadDanhSachGheDaDat", (dsGheKhachDat) => {
+      //Bước 1: Loại mình ra khỏi danh sách
+      dsGheKhachDat = dsGheKhachDat.filter(
+        (item) => item.taiKhoan !== userLogin.taiKhoan
+      );
+      console.log("danhSachGheKhachDat", dsGheKhachDat);
+      // Bước 2: gộp danh sách ghế khách đặt ở tất cả user thành 1 mảng chung
+      let arrGheKhachDat = dsGheKhachDat.reduce((result, item, index) => {
+        let arrGhe = JSON.parse(item.danhSachGhe);
+        return [...result, ...arrGhe];
+      }, []);
+      //uniqBy loại bỏ các pt object trùng nhau theo 1 tiêu chí nào đó
+      arrGheKhachDat = _.uniqBy(arrGheKhachDat, "maGhe");
+      //Đưa dũ liệu ghế khách đặt cập nhập redux
+      dispatch(datGheRealTimeAction(arrGheKhachDat));
+
+      console.log("arrGheKhachDat: ", arrGheKhachDat);
+    });
+    // Cài đặt sự kiện khi reload trang
+    window.addEventListener("beforeunload", function (event) {
+      return () => {
+        clearGhe();
+        this.window.removeEventListener("beforeunload", clearGhe);
+      };
+    });
   }, []);
+  const clearGhe = function (event) {
+    connection.invoke("huyDat", userLogin.taiKhoan, props.match.params.id);
+  };
+
   const { thongTinPhim, danhSachGhe } = chiTietPhongVe;
 
   const renderSeats = () => {
     return danhSachGhe?.map((ghe, index) => {
       let classGheVip = ghe.loaiGhe === "Vip" ? "ghe-2" : "";
       let classGheDaDat = ghe.daDat === true ? "ghe-5" : "";
+      let classGheKhachDat = "";
+      let indexGheKD = danhSachGheKhachDat.findIndex(
+        (gheKD) => gheKD.maGhe === ghe.maGhe
+      );
+      if (indexGheKD !== -1) {
+        classGheKhachDat = "ghe-8";
+      }
       let classGheDaDuocDat = "";
       if (userLogin.taiKhoan === ghe.taiKhoanNguoiDat) {
         classGheDaDuocDat = "ghe-7";
@@ -47,6 +93,7 @@ function Checkout(props) {
       let indexGheDD = danhSachGheDangDat.findIndex(
         (gheDD) => gheDD.maGhe === ghe.maGhe
       );
+
       if (indexGheDD !== -1) {
         classGheDangDat = "ghe-6";
       }
@@ -55,15 +102,13 @@ function Checkout(props) {
         <Fragment key={index}>
           <button
             onClick={() => {
-              dispatch({
-                type: DAT_VE,
-                gheDuocChon: ghe,
-              });
+              dispatch(datGheAction(ghe, props.match.params.id));
             }}
-            className={`ghe-1 ${classGheVip} ${classGheDaDat} ${classGheDaDuocDat} ${classGheDangDat}`}
+            disabled={ghe.daDat || classGheDaDat != ""}
+            className={`ghe-1 ${classGheVip} ${classGheKhachDat}  ${classGheDaDat} ${classGheDaDuocDat} ${classGheDangDat}`}
           >
             <span className="ghe-3">
-              {ghe.daDat ? (
+              {ghe.daDat || classGheKhachDat != "" ? (
                 classGheDaDuocDat != "" ? (
                   <UserOutlined />
                 ) : (
@@ -114,11 +159,14 @@ function Checkout(props) {
                     <th scope="col" className="px-6 py-3">
                       Ghế đã được đăt
                     </th>
+                    <th scope="col" className="px-6 py-3">
+                      Ghế khách khác đang đặt
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4   p">
+                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" className="px-6 py-4   p">
                       <button
                         className="ghe-1"
                         style={{ cursor: "no-drop", pointerEvents: "none" }}
@@ -126,7 +174,7 @@ function Checkout(props) {
                         00
                       </button>
                     </th>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       <button
                         className="ghe-1 ghe-6"
                         style={{ cursor: "no-drop", pointerEvents: "none" }}
@@ -134,10 +182,10 @@ function Checkout(props) {
                         00
                       </button>
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       <button className="ghe-1 ghe-5">X</button>
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       <button
                         className="ghe-1 ghe-2 "
                         style={{ cursor: "no-drop", pointerEvents: "none" }}
@@ -145,12 +193,20 @@ function Checkout(props) {
                         00
                       </button>
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       <button
                         className="ghe-1 ghe-7"
                         style={{ cursor: "no-drop", pointerEvents: "none" }}
                       >
                         <UserOutlined />
+                      </button>
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        className="ghe-1 ghe-8"
+                        style={{ cursor: "no-drop", pointerEvents: "none" }}
+                      >
+                        00
                       </button>
                     </td>
                   </tr>
@@ -166,8 +222,6 @@ function Checkout(props) {
           <h3 className="text-theme text-center font-bold text-3xl mt-4">
             {danhSachGheDangDat
               .reduce((tongTien = 0, ghe, index) => {
-                console.log("ghe: ", ghe);
-
                 return (tongTien += ghe.giaVe);
               }, 0)
               .toLocaleString()}{" "}
@@ -266,7 +320,7 @@ export default function (props) {
         <TabPane tab="CHỌN GHẾ & THANH TOÁN" key="1">
           <Checkout {...props} />
         </TabPane>
-        <TabPane tab="Kết quả đặt vé" key="2">
+        <TabPane tab="KẾT QUẢ ĐẶT VÉ" key="2">
           <KetQuaDatVe {...props} />
         </TabPane>
       </Tabs>
