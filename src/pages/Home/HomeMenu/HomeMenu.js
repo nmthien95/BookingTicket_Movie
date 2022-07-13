@@ -96,8 +96,8 @@ export default function HomeMenu(props) {
                                         return (
                                           <NavLink
                                             className="btn-movie-schedule text-teal-500 hover:text-lime-500"
-                                            to="/"
-                                            key="index"
+                                            to={`/checkout/${item.maLichChieu}`}
+                                            key={index}
                                           >
                                             {moment(
                                               item.ngayChieuGioChieu

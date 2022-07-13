@@ -16,6 +16,7 @@ import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
 import Loading from "./components/Loading/Loading";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Profile from "./pages/Profile/Profile";
 
 export const history = createBrowserHistory();
 
@@ -28,8 +29,9 @@ function App() {
         <Switch>
           <HomeTemplate path="/home" exact Component={Home} />
           <HomeTemplate path="/contact" exact Component={Contact} />
-          <UserTemplate path="/login" exact component={Login} />
-          <Route path="/register" exact component={Register} />
+          <UserTemplate path="/login" exact Component={Login} />
+          <UserTemplate path="/register" exact Component={Register} />
+          <HomeTemplate path="/profile" exact Component={Profile} />
           <HomeTemplate path="/news" exact Component={News} />
           <HomeTemplate path="/detail/:id" exact Component={Detail} />
           <HomeTemplate path="/" exact Component={Home} />

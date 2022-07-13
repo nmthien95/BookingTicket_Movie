@@ -17,11 +17,12 @@ import {
 } from "../../redux/types/QuanLyDatVeType";
 import _ from "lodash";
 import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
-import { UserOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { Tabs } from "antd";
 import { layThongTinNGuoiDungAction } from "../../redux/action/QuanLyNguoiDungAction";
 import moment from "moment";
 import { connection } from "../../index";
+import { history } from "../../App";
 
 function Checkout(props) {
   const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachDat } =
@@ -302,12 +303,27 @@ function Checkout(props) {
 const { TabPane } = Tabs;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default function (props) {
+export default function CheckoutTab(props) {
+  const operations = (
+    <button
+      onClick={() => {
+        dispatch({
+          type: CHANGE_TAB_ACTIVE,
+          number: 1,
+        });
+        history.push("/");
+      }}
+      className="mb-1 border-2 border-gray-700 hover:text-lime-500 text-gray-600 hover:border-lime-500 rounded-md text-md font-bold p-2 transition-all ease-linear"
+    >
+      <HomeOutlined /> <span className="mb-0"> Trang chủ</span>
+    </button>
+  );
   const { tabActive } = useSelector((state) => state.QuanLyDatVeReducer);
   const dispatch = useDispatch();
   return (
     <div className="p-5">
       <Tabs
+        tabBarExtraContent={operations}
         defaultActiveKey={1}
         activeKey={tabActive}
         onChange={(key) => {

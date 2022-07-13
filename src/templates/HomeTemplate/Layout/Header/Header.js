@@ -1,9 +1,79 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
-import { LoginOutlined, UserAddOutlined } from "@ant-design/icons";
+import {
+  LoginOutlined,
+  LogoutOutlined,
+  UserAddOutlined,
+} from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import _ from "lodash";
+import { DANG_XUAT } from "../../../../redux/types/QuanLyNguoiDungType";
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  console.log("userLogin: ", userLogin);
+  const renderLogin = () => {
+    if (_.isEmpty(userLogin)) {
+      return (
+        <Fragment>
+          <button className="self-center p-1  border-r-2  border-slate-400 text-center">
+            <NavLink
+              to="/login"
+              rel="noopener noreferrer"
+              className="flex items-center px-4 font-bold  text-md  text-slate-500 hover:text-slate-900 "
+            >
+              <LoginOutlined className="mr-1" />
+              Đăng nhập
+            </NavLink>
+          </button>
+          <button className="self-center p-1  ml-2 text-center bg-transparent">
+            <NavLink
+              to="/register"
+              rel="noopener noreferrer"
+              className="flex items-center px-4 font-bold text-md text-slate-500      hover:text-slate-900"
+            >
+              <UserAddOutlined className="mr-1" />
+              Đăng kí
+            </NavLink>
+          </button>
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment>
+          <button className="self-center p-1  border-r-2  border-slate-400 text-center">
+            <NavLink
+              to="/profile"
+              rel="noopener noreferrer"
+              className="flex items-center px-4 font-bold  text-md  text-slate-500 hover:text-slate-900 "
+            >
+              <div
+                style={{ width: 45, height: 45 }}
+                className="rounded-full border-2 bg-orange-300 flex justify-center items-center text-lg"
+              >
+                {userLogin.taiKhoan.substr(0, 1)}
+              </div>
+              Hello {userLogin.taiKhoan} !
+            </NavLink>
+          </button>
+          <button
+            className="self-center p-1  ml-2 text-center bg-transparent"
+            onClick={() => {
+              dispatch({
+                type: DANG_XUAT,
+              });
+            }}
+          >
+            <div className="flex items-center px-4 font-bold text-md text-slate-500      hover:text-slate-900">
+              <LogoutOutlined className="mr-1" /> Đăng xuất
+            </div>
+          </button>
+        </Fragment>
+      );
+    }
+  };
   return (
     <div>
       <header
@@ -58,27 +128,7 @@ export default function Header() {
             </li>
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex">
-            <button className="self-center p-1  border-r-2  border-slate-400 text-center">
-              <NavLink
-                to="/login"
-                rel="noopener noreferrer"
-                className="flex items-center px-4 font-bold  text-md  text-slate-500 hover:text-slate-900 "
-              >
-                <LoginOutlined className="mr-1" />
-                Đăng nhập
-              </NavLink>
-            </button>
-
-            <button className="self-center p-1  ml-2 text-center bg-transparent">
-              <NavLink
-                to="/"
-                rel="noopener noreferrer"
-                className="flex items-center px-4 font-bold text-md text-slate-500      hover:text-slate-900"
-              >
-                <UserAddOutlined className="mr-1" />
-                Đăng kí
-              </NavLink>
-            </button>
+            {renderLogin()}
           </div>
           <button className="p-3  text-gray-800   hover:text-gray-900 lg:hidden">
             <svg
