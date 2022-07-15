@@ -17,6 +17,9 @@ import Loading from "./components/Loading/Loading";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Profile from "./pages/Profile/Profile";
+import Films from "./Admin/Films/Films";
+import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
+import Dashboard from "./Admin/Dashboard/Dashboard";
 
 export const history = createBrowserHistory();
 
@@ -36,6 +39,9 @@ function App() {
           <HomeTemplate path="/detail/:id" exact Component={Detail} />
           <HomeTemplate path="/" exact Component={Home} />
           <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
+          <AdminTemplate path="/admin/films" exact Component={Films} />
+          <AdminTemplate path="/admin" exact Component={Dashboard} />
+          <AdminTemplate path="/admin/users" exact Component={Dashboard} />
         </Switch>
       </Router>
     </div>
