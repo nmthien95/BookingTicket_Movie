@@ -1,5 +1,5 @@
-import React from "react";
-import { Tabs } from "antd";
+import React, { Fragment } from "react";
+import { Radio, Space, Tabs } from "antd";
 import { useState } from "react";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
@@ -121,7 +121,18 @@ export default function HomeMenu(props) {
     );
   };
   return (
-    <div id="movie-tabs">
+    <div id="movie-tabs" className="flex flex-col">
+      <Space
+        style={{
+          marginBottom: 24,
+        }}
+      >
+        Tap Responsive:
+        <Radio.Group value={tabPosition} onChange={changeTabPosition}>
+          <Radio.Button value="top">Mobile</Radio.Button>
+          <Radio.Button value="left">Comp</Radio.Button>
+        </Radio.Group>
+      </Space>
       <Tabs tabPosition={tabPosition} className="w-full">
         {renderHeThongRap()}
       </Tabs>

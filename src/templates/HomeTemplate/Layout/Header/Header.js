@@ -14,6 +14,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   console.log("userLogin: ", userLogin);
+
   const renderLogin = () => {
     if (_.isEmpty(userLogin)) {
       return (
@@ -94,26 +95,24 @@ export default function Header() {
           </NavLink>
           <ul className="items-stretch hidden space-x-3 lg:flex mb-0">
             <li className="flex ">
-              <NavLink
-                to="/home"
-                rel="noopener noreferrer"
+              <a
+                href="#lichChieu"
                 className="  text-theme-hover text-header"
                 activeClassName="text-header-classActive"
               >
                 Lịch chiếu
                 <div className="text-header-active btn-theme"></div>
-              </NavLink>
+              </a>
             </li>
             <li className="flex">
-              <NavLink
-                to="/contact"
-                rel="noopener noreferrer"
+              <a
+                href="#cumRap"
                 className="text-theme-hover text-header"
                 activeClassName="text-header-classActive"
               >
                 Cụm Rạp
                 <div className="text-header-active btn-theme"></div>
-              </NavLink>
+              </a>
             </li>
             <li className="flex">
               <NavLink
@@ -126,6 +125,21 @@ export default function Header() {
                 <div className="text-header-active btn-theme"></div>
               </NavLink>
             </li>
+            {userLogin.maLoaiNguoiDung === "QuanTri" ? (
+              <li className="flex">
+                <NavLink
+                  to="/admin"
+                  rel="noopener noreferrer"
+                  className="text-theme-hover text-header"
+                  activeClassName="text-header-classActive	"
+                >
+                  Quản trị
+                  <div className="text-header-active btn-theme"></div>
+                </NavLink>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex">
             {renderLogin()}

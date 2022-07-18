@@ -17,9 +17,11 @@ import Loading from "./components/Loading/Loading";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Profile from "./pages/Profile/Profile";
-import Films from "./Admin/Films/Films";
+import Films from "./pages/Admin/Films/Films";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
-import Dashboard from "./Admin/Dashboard/Dashboard";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import AddNew from "./pages/Admin/Films/AddNew/AddNew";
+import Edit from "./pages/Admin/Films/Edit/Edit";
 
 export const history = createBrowserHistory();
 
@@ -40,8 +42,9 @@ function App() {
           <HomeTemplate path="/" exact Component={Home} />
           <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
           <AdminTemplate path="/admin/films" exact Component={Films} />
+          <AdminTemplate path="/admin/films/addnew" exact Component={AddNew} />
           <AdminTemplate path="/admin" exact Component={Dashboard} />
-          <AdminTemplate path="/admin/users" exact Component={Dashboard} />
+          <AdminTemplate path="/admin/edit/:id" exact Component={Edit} />
         </Switch>
       </Router>
     </div>

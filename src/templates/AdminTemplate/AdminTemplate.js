@@ -2,8 +2,6 @@ import {
   DesktopOutlined,
   FileOutlined,
   HomeOutlined,
-  PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";

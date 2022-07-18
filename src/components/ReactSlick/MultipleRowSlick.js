@@ -73,7 +73,7 @@ const MultipleRowSlick = (props) => {
     ],
   };
   return (
-    <div>
+    <div id="lichChieu">
       <div className="text-center  mb-7">
         <div className="inline-flex w-max my-1  flex-shrink-0  p-1 btn-theme  rounded-xl ">
           <div className="flex w-max   flex-shrink-0  bg-transparent rounded-xl relative">
@@ -81,7 +81,7 @@ const MultipleRowSlick = (props) => {
               onClick={() => {
                 dispatch({ type: SET_FILM_DANG_CHIEU });
               }}
-              className="px-2 py-1 w-30 lg:w-32 rounded-xl font-medium  hover:text-slate-800 z-10 relative duration-500 text-slate-700"
+              className="px-2 py-1 w-28 lg:text-base text-xs lg:w-36 rounded-xl font-medium  hover:text-slate-800 z-10 relative duration-500 text-slate-700"
             >
               Phim đang chiếu
             </button>
@@ -89,12 +89,12 @@ const MultipleRowSlick = (props) => {
               onClick={() => {
                 dispatch({ type: SET_FILM_SAP_CHIEU });
               }}
-              className="px-2 py-1 w-30 lg:w-32 rounded-xl font-medium hover:text-slate-800  z-10 relative duration-500 text-slate-700"
+              className="px-2 py-1 lg:text-base w-28 text-xs lg:w-36 rounded-xl font-medium hover:text-slate-800  z-10 relative duration-500 text-slate-700"
             >
               Phim sắp chiếu
             </button>
             <span
-              className={`absolute left-0 top-0 w-24 lg:w-32 h-full  bg-white rounded-xl  transition ease-out duration-500 ${
+              className={`absolute left-0 top-0 w-28  lg:w-36 h-full  bg-white rounded-xl  transition ease-out duration-500 ${
                 styleSlick[activeClass()]
               }`}
             />
