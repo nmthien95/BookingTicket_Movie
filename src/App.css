@@ -11,6 +11,13 @@ h3,
 h4 {
   margin-bottom: 0;
 }
+.bg-admin-page {
+  background-image: url(/public/img/background.b697469b.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .bg-home-page {
   background-image: url(/public/img/background-form.jpg);
   background-attachment: fixed;

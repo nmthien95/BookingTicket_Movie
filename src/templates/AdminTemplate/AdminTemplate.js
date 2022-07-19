@@ -124,7 +124,7 @@ const AdminTemplate = (props) => {
                 </Menu.Item>
               </Menu>
             </Sider>
-            <Layout className="site-layout">
+            <Layout className="site-layout bg-admin-page">
               <Header
                 className="site-layout-background"
                 style={{

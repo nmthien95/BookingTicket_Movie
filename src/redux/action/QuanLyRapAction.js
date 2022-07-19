@@ -34,3 +34,17 @@ export const layThongTinChiTietPhim = (id) => {
     }
   };
 };
+// export const layThongTinHeThongRap = (id) => {
+//   return async (dispatch) => {
+//     try {
+//       const result = await quanLyRapService.layThongTinHeThongRap();
+//       console.log("result: ", result);
+//       dispatch({
+//         type: SET_CHI_TIET_PHIM,
+//         filmDetail: result.data.content,
+//       });
+//     } catch (erros) {
+//       console.log("erros".errors.response.data);
+//     }
+//   };
+// };

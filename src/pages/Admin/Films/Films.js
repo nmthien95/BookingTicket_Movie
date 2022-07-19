@@ -1,16 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Button, Space, Table, Input } from "antd";
-import {
-  AudioOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import { AudioOutlined, CalendarOutlined, DeleteOutlined, EditOutlined, SearchOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  layDanhPhimAction,
-  xoaPhimAction,
-} from "../../../redux/action/QuanLyPhimAction";
+import { layDanhPhimAction, xoaPhimAction } from "../../../redux/action/QuanLyPhimAction";
 import { NavLink } from "react-router-dom";
 import { history } from "../../../App";
 
@@ -35,7 +27,7 @@ export default function Films() {
       title: "Mã phim",
       dataIndex: "maPhim",
       key: "maPhim",
-      width: "15%",
+      width: "10%",
       sorter: (a, b) => a.maPhim - b.maPhim,
 
       sortOrder: sortedInfo.columnKey === "maPhim" ? sortedInfo.order : null,
@@ -85,41 +77,39 @@ export default function Films() {
       key: "moTa",
       width: "40%",
       render: (text, film) => {
-        return (
-          <Fragment>
-            {film.moTa.length > 50
-              ? film.moTa.substr(0, 80) + " ..."
-              : film.moTa}
-          </Fragment>
-        );
+        return <Fragment>{film.moTa.length > 50 ? film.moTa.substr(0, 80) + " ..." : film.moTa}</Fragment>;
       },
     },
     {
       title: "Hành động",
       dataIndex: "hanhDong",
       key: "hanhDong",
-      width: "10%",
+      width: "15%",
       render: (text, film) => {
         return (
           <Fragment>
-            <NavLink
-              className="bg-slate-700 text-white  mr-2 text-2xl inline-flex p-1 transition-all ease-linear hover:text-lime-500 rounded-lg"
-              to={`/admin/edit/${film.maPhim}`}
-            >
+            <NavLink className="bg-slate-700 text-white  mr-1 text-xl inline-flex p-1 transition-all ease-linear hover:text-lime-500 rounded-lg" to={`/admin/films/edit/${film.maPhim}`}>
               <EditOutlined />
             </NavLink>
             <span
-              className="bg-slate-700 text-red-400 text-2xl inline-flex p-1 hover:text-lime-500  transition-all ease-linear rounded-lg cursor-pointer"
+              className="bg-slate-700 mr-1 text-red-400 text-xl inline-flex p-1 hover:text-lime-500  transition-all ease-linear rounded-lg cursor-pointer"
               onClick={() => {
-                if (
-                  window.confirm("Bạn có chắc muốn xóa phim" + film.tenPhim)
-                ) {
+                if (window.confirm("Bạn có chắc muốn xóa phim" + film.tenPhim)) {
                   dispatch(xoaPhimAction(film.maPhim));
                 }
               }}
             >
               <DeleteOutlined />
             </span>
+            <NavLink
+              className="bg-slate-700 text-green-500   text-xl inline-flex p-1 transition-all ease-linear hover:text-lime-500 rounded-lg"
+              to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`}
+              onClick={() => {
+                localStorage.setItem("filmParams", JSON.stringify(film));
+              }}
+            >
+              <CalendarOutlined />
+            </NavLink>
           </Fragment>
         );
       },
@@ -132,9 +122,7 @@ export default function Films() {
   };
   return (
     <>
-      <h3 className="text-theme text-center text-bold text-3xl">
-        Quản lý Phim
-      </h3>
+      <h3 className="text-theme text-center text-bold text-3xl">Quản lý Phim</h3>
       <Button
         className="mb-5"
         onClick={() => {
@@ -143,18 +131,8 @@ export default function Films() {
       >
         Thêm phim
       </Button>
-      <Search
-        className="mb-5"
-        placeholder="input search text"
-        onSearch={onSearch}
-        enterButton={<SearchOutlined />}
-      />
-      <Table
-        columns={columns}
-        dataSource={data}
-        onChange={handleChange}
-        rowKey={"maPhim"}
-      />
+      <Search className="mb-5" placeholder="input search text" onSearch={onSearch} enterButton={<SearchOutlined />} />
+      <Table columns={columns} dataSource={data} onChange={handleChange} rowKey={"maPhim"} />
     </>
   );
 }
