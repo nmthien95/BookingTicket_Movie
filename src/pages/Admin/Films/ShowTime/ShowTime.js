@@ -1,5 +1,5 @@
 import { Button, Cascader, Form, InputNumber, Select } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { DatePicker, Space } from "antd";
 import { quanLyRapService } from "../../../../services/QuanLyRapService";
 import { useFormik } from "formik";
@@ -86,44 +86,52 @@ const ShowTime = (props) => {
     film = JSON.parse(localStorage.getItem("filmParams"));
   }
   return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 4,
-      }}
-      wrapperCol={{
-        span: 14,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onSubmitCapture={formik.handleSubmit}
-    >
+    <Fragment>
       <h3 className="text-theme  text-3xl mb-8">Tạo lịch chiếu - {props.match.params.tenPhim}</h3>
-
-      <Form.Item label="Hệ thống rạp">
-        <Select options={convertSelectHTR()} onChange={handleChangeHeThongRap} placeholder="Vui lòng chọn hệ thống rạp" />
-      </Form.Item>
-      <Form.Item label="Cụm rạp">
-        <Select options={convertSelectCumRap()} onChange={handleChangeCumRap} placeholder="Vui lòng chọn cụm rạp" />
-      </Form.Item>
-      <Form.Item label="Ngày chiếu giờ chiếu">
-        <DatePicker format="DD/MM/YYYY hh:mm:ss" showTime onChange={onChangeDate} onOk={onOk} />
-      </Form.Item>
-      <Form.Item label="Giá vé">
-        <InputNumber min={75000} max={150000} onChange={onChangeInputNumber} />
-      </Form.Item>
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Tạo lịch chiếu
-        </Button>
-      </Form.Item>
-    </Form>
+      <div className="flex ">
+        <div className="basis-1/4 px-10">
+          <img src={film.hinhAnh} className="w-full" alt="sdf" />
+        </div>
+        <div className="basis-3/4">
+          <Form
+            name="basic"
+            labelCol={{
+              span: 4,
+            }}
+            wrapperCol={{
+              span: 10,
+            }}
+            initialValues={{
+              remember: true,
+            }}
+            onSubmitCapture={formik.handleSubmit}
+          >
+            <Form.Item label="Hệ thống rạp">
+              <Select options={convertSelectHTR()} onChange={handleChangeHeThongRap} placeholder="Vui lòng chọn hệ thống rạp" />
+            </Form.Item>
+            <Form.Item label="Cụm rạp">
+              <Select options={convertSelectCumRap()} onChange={handleChangeCumRap} placeholder="Vui lòng chọn cụm rạp" />
+            </Form.Item>
+            <Form.Item label="Ngày chiếu giờ chiếu">
+              <DatePicker format="DD/MM/YYYY hh:mm:ss" showTime onChange={onChangeDate} onOk={onOk} />
+            </Form.Item>
+            <Form.Item label="Giá vé">
+              <InputNumber min={75000} max={150000} onChange={onChangeInputNumber} />
+            </Form.Item>
+            <Form.Item
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <Button type="primary" htmlType="submit">
+                Tạo lịch chiếu
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
+      </div>
+    </Fragment>
   );
 };
 

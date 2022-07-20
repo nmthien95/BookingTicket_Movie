@@ -2,13 +2,7 @@ import { connection } from "../..";
 import { quanLyDatVeService } from "../../services/QuanLyDatVeService";
 import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../types/LoadingType";
-import {
-  CHUYEN_TAB,
-  DAT_GHE,
-  DAT_VE,
-  DAT_VE_HOAN_TAT,
-  SET_CHI_TIET_PHONG_VE,
-} from "../types/QuanLyDatVeType";
+import { CHUYEN_TAB, DAT_GHE, DAT_VE, DAT_VE_HOAN_TAT, SET_CHI_TIET_PHONG_VE } from "../types/QuanLyDatVeType";
 import { displayLoadingAction, hideLoadingAction } from "./LoadingAction";
 
 export const layChiTietPhongVeAction = (maLichChieu) => {
@@ -24,9 +18,7 @@ export const layChiTietPhongVeAction = (maLichChieu) => {
         });
       }
     } catch (error) {
-      console.log("error: ", error);
-
-      console.log("error", error.response && error.response.data);
+      console.log("error", error.response?.data);
     }
   };
 };
@@ -40,11 +32,7 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
       await dispatch({ type: DAT_VE_HOAN_TAT });
       await dispatch(hideLoadingAction);
       let userLogin = getState().QuanLyNguoiDungReducer.userLogin;
-      await connection.invoke(
-        "datGheThanhCong",
-        userLogin.taiKhoan,
-        thongTinDatVe.maLichChieu
-      );
+      await connection.invoke("datGheThanhCong", userLogin.taiKhoan, thongTinDatVe.maLichChieu);
       dispatch({ type: CHUYEN_TAB });
     } catch (error) {
       console.log(console.log(error.response.data));

@@ -28,6 +28,7 @@ export const history = createBrowserHistory();
 
 function App() {
   const { isLoading } = useSelector((state) => state.LoadingReducer);
+
   return (
     <div className="app">
       <Fragment>{isLoading ? <Loading /> : ""}</Fragment>

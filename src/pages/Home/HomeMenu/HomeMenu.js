@@ -1,43 +1,28 @@
 import React, { Fragment } from "react";
 import { Radio, Space, Tabs } from "antd";
-import { useState } from "react";
-import { useEffect } from "react";
+
 import { NavLink } from "react-router-dom";
 
 import "./HomeMenu.css";
 import moment from "moment";
+import { useViewport } from "../../../util/settings/config";
 
 const { TabPane } = Tabs;
 
 export default function HomeMenu(props) {
   const { heThongRapChieu } = props;
 
-  const [state, setSate] = useState({
-    tabPosition: "left",
-  });
+  const viewPort = useViewport();
+  const isMobile = viewPort.width <= 1030;
 
-  const changeTabPosition = (e) => {
-    setSate({ tabPosition: e.target.value });
-  };
-  const { tabPosition } = state;
   const renderHeThongRap = () => {
     return (
       heThongRapChieu &&
       heThongRapChieu.map((heThongRap, index) => {
         return (
-          <TabPane
-            tab={
-              <img
-                src={heThongRap.logo}
-                alt="sdsd"
-                className="rounded-full "
-                width="50"
-              />
-            }
-            key={index}
-          >
+          <TabPane tab={<img src={heThongRap.logo} alt="sdsd" className="rounded-full " width="50" />} key={index}>
             {/**Load cụm rap tương ứng */}
-            <Tabs tabPosition={tabPosition}>
+            <Tabs tabPosition={isMobile ? "top" : "left"}>
               {heThongRap.lstCumRap &&
                 heThongRap.lstCumRap.map((cumRap, index) => {
                   return (
@@ -46,20 +31,10 @@ export default function HomeMenu(props) {
                       tab={
                         <div className="w-2/5">
                           <div className="text-left ml-2 pt-3">
-                            <h4 className="text-lime-600">
-                              {cumRap.tenCumRap}
-                            </h4>
+                            <h4 className="text-lime-600">{cumRap.tenCumRap}</h4>
 
-                            {cumRap.diaChi.length > 50 ? (
-                              <p className="text-gray-400">
-                                {cumRap.diaChi.slice(0, 50)} ...
-                              </p>
-                            ) : (
-                              <p className="text-gray-400">{cumRap.diaChi}</p>
-                            )}
-                            <p className="text-red-400 text-base font-medium	">
-                              Chi tiết
-                            </p>
+                            {cumRap.diaChi.length > 50 ? <p className="text-gray-400">{cumRap.diaChi.slice(0, 50)} ...</p> : <p className="text-gray-400">{cumRap.diaChi}</p>}
+                            <p className="text-red-400 text-base font-medium	">Chi tiết</p>
                           </div>
                         </div>
                       }
@@ -71,7 +46,7 @@ export default function HomeMenu(props) {
                           <div className="d-flex20 line-80 w-full">
                             <div>
                               <img
-                                class="img-tap-film"
+                                className="img-tap-film"
                                 src={phim.hinhAnh}
                                 alt={phim.tenPhim}
                                 onError={(e) => {
@@ -82,29 +57,19 @@ export default function HomeMenu(props) {
                             </div>
                             <div className="tab-movie-content grow px-3">
                               <h2 className="text-lg font-medium	">
-                                <span className="movie-id bg-orange-600">
-                                  {phim.maPhim}
-                                </span>
+                                <span className="movie-id bg-orange-600">{phim.maPhim}</span>
                                 {phim.tenPhim}
                               </h2>
                               <div className="movie-schedule">
                                 <div className="grid grid-cols-2 gap-2">
                                   {phim.lstLichChieuTheoPhim &&
-                                    phim.lstLichChieuTheoPhim
-                                      .slice(0, 4)
-                                      .map((item, index) => {
-                                        return (
-                                          <NavLink
-                                            className="btn-movie-schedule text-teal-500 hover:text-lime-500"
-                                            to={`/checkout/${item.maLichChieu}`}
-                                            key={index}
-                                          >
-                                            {moment(
-                                              item.ngayChieuGioChieu
-                                            ).format("hh:mm A")}
-                                          </NavLink>
-                                        );
-                                      })}
+                                    phim.lstLichChieuTheoPhim.slice(0, 4).map((item, index) => {
+                                      return (
+                                        <NavLink className="btn-movie-schedule text-teal-500 hover:text-lime-500" to={`/checkout/${item.maLichChieu}`} key={index}>
+                                          {moment(item.ngayChieuGioChieu).format("hh:mm A")}
+                                        </NavLink>
+                                      );
+                                    })}
                                 </div>
                               </div>
                             </div>
@@ -128,12 +93,8 @@ export default function HomeMenu(props) {
         }}
       >
         Tap Responsive:
-        <Radio.Group value={tabPosition} onChange={changeTabPosition}>
-          <Radio.Button value="top">Mobile</Radio.Button>
-          <Radio.Button value="left">Comp</Radio.Button>
-        </Radio.Group>
       </Space>
-      <Tabs tabPosition={tabPosition} className="w-full">
+      <Tabs tabPosition={isMobile ? "top" : "left"} className="w-full">
         {renderHeThongRap()}
       </Tabs>
     </div>

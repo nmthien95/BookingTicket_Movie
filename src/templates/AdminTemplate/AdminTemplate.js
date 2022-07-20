@@ -1,9 +1,4 @@
-import {
-  DesktopOutlined,
-  FileOutlined,
-  HomeOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { DesktopOutlined, FileOutlined, HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import _ from "lodash";
@@ -24,12 +19,10 @@ function getItem(label, key, icon, children) {
   };
 }
 
-// const items = [
-//   getItem(<NavLink to="/admin/user">User</NavLink>, "1", <UserOutlined />),
-//   getItem("Option 2", "2", <DesktopOutlined />),
-// ];
-
 const AdminTemplate = (props) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { Component, ...restProps } = props;
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   const [collapsed, setCollapsed] = useState(false);
@@ -46,10 +39,7 @@ const AdminTemplate = (props) => {
   }
   const operation = (
     <div className="flex justify-between items-center container mx-auto">
-      <NavLink
-        to="/"
-        className="text-white text-3xl hover:text-lime-500 transition-all ease-linear"
-      >
+      <NavLink to="/" className="text-white text-3xl hover:text-lime-500 transition-all ease-linear">
         <HomeOutlined />
       </NavLink>
       {!_.isEmpty(userLogin) ? (
@@ -101,11 +91,7 @@ const AdminTemplate = (props) => {
               minHeight: "100vh",
             }}
           >
-            <Sider
-              collapsible
-              collapsed={collapsed}
-              onCollapse={(value) => setCollapsed(value)}
-            >
+            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
               <div className="logo" />
               <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
                 <Menu.Item key="1" icon={<UserOutlined />}>

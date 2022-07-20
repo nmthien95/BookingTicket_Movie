@@ -1,0 +1,20 @@
+.app {
+  background-image: url(http://demo1.cybersoft.edu.vn/static/media/backapp.b46ef3a1.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.app-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.1%;
+  border-radius: 15px;
+  display: block;
+  overflow: hidden;
+}
+.app-1 .ant-carousel .slick-dots-bottom {
+  display: none !important;
+}

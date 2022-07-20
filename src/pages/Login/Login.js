@@ -43,10 +43,7 @@ export default function Login(props) {
             </div>
             <div className="mt-4">
               <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm text-gray-800"
-                >
+                <label htmlFor="password" className="block text-sm text-gray-800">
                   Mật khẩu
                 </label>
                 <input
@@ -60,16 +57,16 @@ export default function Login(props) {
                 Quên mật khẩu ?
               </a>
               <div className="mt-6">
-                <button className="w-full px-4 py-2 tracking-wide  text-gray-900 transition-colors duration-200 transform  rounded-md bg-gradient-to-r from-teal-200 to-lime-200 ease-in duration-300 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 focus:outline-none ">
+                <button
+                  type="submit"
+                  className="w-full px-4 py-2 tracking-wide  text-gray-900 transition-colors  transform  rounded-md bg-gradient-to-r from-teal-200 to-lime-200 ease-in duration-300 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 focus:outline-none "
+                >
                   Đăng nhập
                 </button>
               </div>
               <p className="mt-8 text-xs font-light text-center text-gray-700">
                 Bạn chưa có tài khoản ?
-                <NavLink
-                  to="register"
-                  className="font-medium text-lime-600 hover:underline"
-                >
+                <NavLink to="/register" className="font-medium text-lime-600 hover:underline">
                   Đăng kí
                 </NavLink>
               </p>

@@ -4,9 +4,9 @@ import Footer from "./Layout/Footer/Footer";
 import Header from "./Layout/Header/Header";
 
 export const HomeTemplate = (props) => {
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { Component, ...restProps } = props;
   return (
     <Route
