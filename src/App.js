@@ -30,7 +30,7 @@ function App() {
   const { isLoading } = useSelector((state) => state.LoadingReducer);
 
   return (
-    <div className="app">
+    <div>
       <Fragment>{isLoading ? <Loading /> : ""}</Fragment>
       <Router history={history}>
         <Switch>

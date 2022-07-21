@@ -1,11 +1,14 @@
 import { quanLyNguoiDungService } from "../../services/QuanLyNguoiDung";
 import { DANG_NHAP, SET_THONG_TIN_NGUOI_DUNG } from "../types/QuanLyNguoiDungType";
 import { history } from "../../App";
+import { displayLoadingAction, hideLoadingAction } from "./LoadingAction";
 
 export const dangNhapAction = (thongtinDangNhap) => {
   return async (dispatch) => {
     try {
+      dispatch(displayLoadingAction);
       const result = await quanLyNguoiDungService.dangNhap(thongtinDangNhap);
+      dispatch(hideLoadingAction);
       if (result.data.statusCode === 200) {
         console.log(result);
         dispatch({
@@ -18,6 +21,7 @@ export const dangNhapAction = (thongtinDangNhap) => {
 
       console.log("result", result);
     } catch (error) {
+      dispatch(hideLoadingAction);
       console.log("error", error.response?.data);
     }
   };
@@ -25,7 +29,9 @@ export const dangNhapAction = (thongtinDangNhap) => {
 export const layThongTinNGuoiDungAction = (thongtinDangNhap) => {
   return async (dispatch) => {
     try {
+      dispatch(displayLoadingAction);
       const result = await quanLyNguoiDungService.layThongTinNguoiDung();
+      dispatch(hideLoadingAction);
       if (result.data.statusCode === 200) {
         console.log(result);
         dispatch({
@@ -33,23 +39,23 @@ export const layThongTinNGuoiDungAction = (thongtinDangNhap) => {
           thongTinNguoiDung: result.data.content,
         });
       }
-
-      console.log("result", result);
     } catch (error) {
+      dispatch(hideLoadingAction);
       console.log("error", error.response?.data);
     }
   };
 };
 export const dangKyAction = (thongTinDangKy) => {
   return async (dispatch) => {
-    console.log(history);
     try {
+      dispatch(displayLoadingAction);
       const result = await quanLyNguoiDungService.dangKy(thongTinDangKy);
-
-      history.push("/");
+      dispatch(hideLoadingAction);
       alert("Đăng kí thành công");
+      history.push("/");
     } catch (error) {
-      console.log("error: ", error);
+      dispatch(hideLoadingAction);
+
       alert(error.response?.data.content);
     }
   };

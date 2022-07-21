@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./loading.css";
 export default function Loading() {
   return (
     <div
@@ -10,10 +10,14 @@ export default function Loading() {
         left: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(0,0,0,0.5)",
+        backgroundColor: "rgba(0,0,0,0.6)",
       }}
     >
-      <div className="text-4xl text-white">Loading ...</div>
+      <div className="loader">
+        <div className="inner one" />
+        <div className="inner two" />
+        <div className="inner three" />
+      </div>
     </div>
   );
 }

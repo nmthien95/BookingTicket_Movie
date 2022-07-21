@@ -8,8 +8,10 @@ import { displayLoadingAction, hideLoadingAction } from "./LoadingAction";
 export const layChiTietPhongVeAction = (maLichChieu) => {
   return async (dispatch) => {
     try {
+      dispatch(displayLoadingAction);
+
       const result = await quanLyDatVeService.layChiTietPhongVe(maLichChieu);
-      //   console.log("result: ", result);
+      dispatch(hideLoadingAction);
 
       if (result.status === 200) {
         dispatch({
@@ -18,6 +20,8 @@ export const layChiTietPhongVeAction = (maLichChieu) => {
         });
       }
     } catch (error) {
+      dispatch(hideLoadingAction);
+
       console.log("error", error.response?.data);
     }
   };
@@ -49,9 +53,7 @@ export const datGheAction = (ghe, maLichChieu) => {
     //Call api về backend
     let danhSachGheDangDat = getState().QuanLyDatVeReducer.danhSachGheDangDat;
     let taiKhoan = getState().QuanLyNguoiDungReducer.userLogin.taiKhoan;
-    console.log("taiKhoan: ", taiKhoan);
-    console.log("danhSachGheDangDat", danhSachGheDangDat);
-    console.log("maLichChieu", maLichChieu);
+
     // chuyển mảng thành chuối
     danhSachGheDangDat = JSON.stringify(danhSachGheDangDat);
     // call api signalR

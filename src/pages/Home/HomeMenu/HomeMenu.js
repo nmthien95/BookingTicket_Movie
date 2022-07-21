@@ -43,7 +43,7 @@ export default function HomeMenu(props) {
                       {/**Load phim tương ứng */}
                       {cumRap.danhSachPhim.map((phim, index) => {
                         return (
-                          <div className="d-flex20 line-80 w-full">
+                          <div className="d-flex20 line-80 w-full" key={index}>
                             <div>
                               <img
                                 className="img-tap-film"
@@ -86,14 +86,7 @@ export default function HomeMenu(props) {
     );
   };
   return (
-    <div id="movie-tabs" className="flex flex-col">
-      <Space
-        style={{
-          marginBottom: 24,
-        }}
-      >
-        Tap Responsive:
-      </Space>
+    <div id="movie-tabs">
       <Tabs tabPosition={isMobile ? "top" : "left"} className="w-full">
         {renderHeThongRap()}
       </Tabs>

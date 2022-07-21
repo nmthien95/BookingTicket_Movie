@@ -16,7 +16,6 @@ export const CheckoutTemplate = (props) => {
     <Route
       {...restProps}
       render={(propsRoute) => {
-        //props.location, props.history,props.match
         return (
           <Fragment>
             <Component {...propsRoute} />
