@@ -12,7 +12,6 @@ export const HomeTemplate = (props) => {
     <Route
       {...restProps}
       render={(propsRoute) => {
-        //props.location, props.history,props.match
         return (
           <div className="bg-home-page">
             <Header {...propsRoute} />

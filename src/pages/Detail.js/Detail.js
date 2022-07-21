@@ -36,12 +36,7 @@ export default function Detail(props) {
         <div className="grid grid-cols-12">
           <div className="col-span-5 col-start-3">
             <div className="grid grid-cols-3">
-              <img
-                className="col-span-1"
-                src={`${filmDetal.hinhAnh}`}
-                alt="123"
-                style={{ width: "100%", height: 300 }}
-              />
+              <img className="col-span-1" src={`${filmDetal.hinhAnh}`} alt="123" style={{ width: "100%", height: 300 }} />
               <div className="col-span-2 flex flex-col justify-around text-left ml-5">
                 <p className="text-sm">
                   Ngày chiếu:
@@ -54,15 +49,8 @@ export default function Detail(props) {
           </div>
           <div className="col-span-4">
             <div className="ml-10 ">
-              <h3 className="  text-orange-600 text-lg font-bold pl-20 text-left m-0">
-                Đánh giá
-              </h3>
-              <Rate
-                allowHalf
-                className="text-yellow-400  text-left"
-                style={{ paddingLeft: "3.2rem", display: "block" }}
-                value={filmDetal.danhGia / 2}
-              />
+              <h3 className="  text-orange-600 text-lg font-bold pl-20 text-left m-0">Đánh giá</h3>
+              <Rate allowHalf className="text-yellow-400  text-left" style={{ paddingLeft: "3.2rem", display: "block" }} value={filmDetal.danhGia / 2} />
               <div className={`c100 p${filmDetal.danhGia * 10} big  `}>
                 <span>{filmDetal.danhGia * 10}%</span>
                 <div className="slice">
@@ -89,12 +77,7 @@ export default function Detail(props) {
                       <TabPane
                         tab={
                           <div className="text-slate-800">
-                            <img
-                              src={heThongRap.logo}
-                              alt="sdsd"
-                              className="rounded-full "
-                              width="50"
-                            />
+                            <img src={heThongRap.logo} alt="sdsd" className="rounded-full " width="50" />
                             {heThongRap.tenHeThongRap}
                           </div>
                         }
@@ -105,37 +88,21 @@ export default function Detail(props) {
                             return (
                               <div key={index}>
                                 <div className="flex flex-row">
-                                  <img
-                                    style={{ width: 60, height: 60 }}
-                                    src={cumRap.hinhAnh}
-                                    alt="sdfsd"
-                                  />
+                                  <img style={{ width: 60, height: 60 }} src={cumRap.hinhAnh} alt="sdfsd" />
                                   <div className="ml-2 ">
-                                    <p className="text-xl leading-3 font-bold">
-                                      {cumRap.tenCumRap}
-                                    </p>
-                                    <p className="text-gray-400">
-                                      {cumRap.diaChi}
-                                    </p>
+                                    <p className="text-xl leading-3 font-bold">{cumRap.tenCumRap}</p>
+                                    <p className="text-gray-400">{cumRap.diaChi}</p>
                                   </div>
                                 </div>
-                                <div className="thong-tin-lich-chieu grid grid-cols-4">
+                                <div className="thong-tin-lich-chieu grid grid-cols-4 gap-2">
                                   {cumRap.lichChieuPhim &&
-                                    cumRap.lichChieuPhim
-                                      .slice(0, 4)
-                                      .map((lichChieu, index) => {
-                                        return (
-                                          <NavLink
-                                            to={`/checkout/${lichChieu.maLichChieu}`}
-                                            key={index}
-                                            className="col-span-1 mr-2 btn-movie-schedule text-teal-500 hover:text-lime-500"
-                                          >
-                                            {moment(
-                                              lichChieu.ngayChieuGioChieu
-                                            ).format("hh:mm A")}
-                                          </NavLink>
-                                        );
-                                      })}
+                                    cumRap.lichChieuPhim.slice(0, 4).map((lichChieu, index) => {
+                                      return (
+                                        <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="col-span-1  mb-2 btn-movie-schedule text-teal-600 hover:text-lime-500">
+                                          {moment(lichChieu.ngayChieuGioChieu).format("hh:mm A")}
+                                        </NavLink>
+                                      );
+                                    })}
                                 </div>
                               </div>
                             );

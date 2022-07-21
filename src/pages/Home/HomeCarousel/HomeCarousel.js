@@ -3,8 +3,7 @@ import { useEffect } from "react";
 import { Carousel } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import "./HomeCarousel.css";
-
-import { getCarouselAction } from "../../../../redux/action/CarouselAction";
+import { getCarouselAction } from "../../../redux/action/CarouselAction";
 const contentStyle = {
   height: "100vh",
   color: "#fff",
@@ -28,18 +27,16 @@ export default function HomeCarousel(props) {
     return arrImg.map((item, index) => {
       return (
         <div key={index} className="w-full">
-          <div
-            style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}
-          >
-            <img
-              src={item.hinhAnh}
-              className="w-full h-full opacity-0"
-              alt="sasa"
-            />
+          <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}>
+            <img src={item.hinhAnh} className="w-full h-full opacity-0" alt="sasa" />
           </div>
         </div>
       );
     });
   };
-  return <Carousel autoplay>{renderImg()}</Carousel>;
+  return (
+    <Carousel className="home-carousel" autoplay>
+      {renderImg()}
+    </Carousel>
+  );
 }

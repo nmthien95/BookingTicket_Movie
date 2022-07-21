@@ -2,14 +2,16 @@ import React from "react";
 import HomeMenu from "./HomeMenu/HomeMenu";
 
 import { useSelector, useDispatch } from "react-redux";
-import MultipleRowSlick from "../../components/ReactSlick/MultipleRowSlick";
+
 import { useEffect } from "react";
 import { layDanhPhimAction } from "../../redux/action/QuanLyPhimAction";
 import { layDanhSachHeThongRapAction } from "../../redux/action/QuanLyRapAction";
-import HomeCarousel from "../../templates/HomeTemplate/Layout/HomeCarousel/HomeCarousel";
-import { NavLink } from "react-router-dom";
+
 import "./Home.css";
 import { Carousel } from "antd";
+import MultipleRowSlick from "../../components/HomeLayout/ReactSlick/MultipleRowSlick";
+import HomeCarousel from "./HomeCarousel/HomeCarousel";
+import SearchMoive from "./SearchMovie/SearchMoive";
 
 export default function Home(props) {
   const { arrFilm } = useSelector((state) => state.QuanLyPhimReducer);
@@ -22,7 +24,10 @@ export default function Home(props) {
   }, []);
   return (
     <div>
-      <HomeCarousel />
+      <div className="relative h-screen">
+        <HomeCarousel />
+        <SearchMoive />
+      </div>
       <section className="text-gray-600 body-font  	">
         <div className="container px-5 py-24 mx-auto">
           <MultipleRowSlick arrFilm={arrFilm} />

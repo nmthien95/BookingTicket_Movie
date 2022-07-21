@@ -290,14 +290,18 @@ function KetQuaDatVe(props) {
   const { thongTinNguoiDung } = useSelector((state) => state.QuanLyNguoiDungReducer);
   console.log("thongTinNguoiDung: ", thongTinNguoiDung);
 
-  const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   useEffect(() => {
     dispatch(layThongTinNGuoiDungAction());
   }, []);
   const renderTicketItem = () => {
-    return thongTinNguoiDung.thongTinDatVe?.map((ticket, index) => {
+    let arrTicketItem = [];
+    for (let index = thongTinNguoiDung.thongTinDatVe?.length - 1; index >= 0; index--) {
+      let ticket = thongTinNguoiDung.thongTinDatVe[index];
+      console.log("ticket: ", ticket);
+
       const seats = _.first(ticket.danhSachGhe);
-      return (
+      console.log("seats: ", seats);
+      arrTicketItem.push(
         <div className="py-8 px-4 lg:w-1/3 ">
           <div className="h-full flex items-start  p-2 " style={{ boxShadow: "0 0 5px grey" }}>
             <div className="w-12 flex-shrink-0 flex flex-col text-center leading-none">
@@ -332,7 +336,8 @@ function KetQuaDatVe(props) {
           </div>
         </div>
       );
-    });
+    }
+    return arrTicketItem;
   };
   return (
     <div className="p-5">

@@ -34,10 +34,5 @@ h4 {
   @apply bg-gradient-to-r from-teal-300 to-lime-300 text-slate-800;
 }
 .text-theme {
-  @apply bg-gradient-to-r from-teal-500 to-lime-500 text-transparent bg-clip-text;
-}
-.slick-dots li button:before {
-  font-size: 10px !important;
-  /* opacity: 1 !important; */
-  color: rgb(45, 182, 45) !important;
+  @apply bg-gradient-to-r from-teal-500 to-lime-500 text-transparent bg-clip-text text-white;
 }

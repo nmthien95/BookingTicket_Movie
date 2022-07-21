@@ -1,19 +1,14 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-
+import "./MultipleRowSlick.css";
 import styleSlick from "./MultipleRowSlick.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import Film_Flip from "../Film/Film_Flip";
-import {
-  SET_FILM_DANG_CHIEU,
-  SET_FILM_SAP_CHIEU,
-} from "../../redux/types/QuanLyPhimType";
+import Film_Flip from "../../Film/Film_Flip";
+import { SET_FILM_DANG_CHIEU, SET_FILM_SAP_CHIEU } from "../../../redux/types/QuanLyPhimType";
 
 const MultipleRowSlick = (props) => {
   const dispatch = useDispatch();
-  const { dangChieu, sapChieu } = useSelector(
-    (state) => state.QuanLyPhimReducer
-  );
+  const { dangChieu, sapChieu } = useSelector((state) => state.QuanLyPhimReducer);
 
   let activeClass = () => {
     if (dangChieu === true && sapChieu === false) {
@@ -32,7 +27,7 @@ const MultipleRowSlick = (props) => {
   };
 
   const settings = {
-    className: "center variable-width ",
+    className: "center variable-width multipleRowSlick",
     centerMode: false,
     infinite: true,
     centerPadding: "60px",
@@ -93,11 +88,7 @@ const MultipleRowSlick = (props) => {
             >
               Phim sắp chiếu
             </button>
-            <span
-              className={`absolute left-0 top-0 w-28  lg:w-36 h-full  bg-white rounded-xl  transition ease-out duration-500 ${
-                styleSlick[activeClass()]
-              }`}
-            />
+            <span className={`absolute left-0 top-0 w-28  lg:w-36 h-full  bg-white rounded-xl  transition ease-out duration-500 ${styleSlick[activeClass()]}`} />
           </div>
         </div>
       </div>
