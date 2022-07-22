@@ -35,7 +35,7 @@ export default function HomeCarousel(props) {
     });
   };
   return (
-    <Carousel className="home-carousel" autoplay>
+    <Carousel className="home-carousel " autoplay>
       {renderImg()}
     </Carousel>
   );

@@ -1,7 +1,7 @@
 .text-header {
-  @apply text-slate-800 flex items-center px-4 font-medium;
+  @apply text-slate-800 flex items-center md:px-4 font-medium;
   cursor: pointer;
-  padding: 0px 16px;
+  /* padding: 0px 16px; */
   transition: all 0.3s;
   text-decoration: none;
   font-size: 1rem;

@@ -1,13 +1,15 @@
 .search-moive {
-  position: absolute;
-  left: 50%;
+  /* position: absolute; */
+  /* left: 50%; */
   height: 80px;
   display: block;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
+  transform: translate(0, 80px);
   z-index: 10;
   width: 100%;
   padding: 0 10%;
   border-radius: 10px;
+  @apply sm:absolute left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2;
 }
 .seacrh-container {
   height: 100%;
@@ -24,4 +26,7 @@
   width: 100%;
   height: 100%;
   outline: none;
+}
+.select-text {
+  @apply font-bold bg-slate-200 text-xs md:text-base px-2 cursor-pointer;
 }

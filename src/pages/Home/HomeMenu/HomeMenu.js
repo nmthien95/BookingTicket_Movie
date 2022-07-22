@@ -44,7 +44,7 @@ export default function HomeMenu(props) {
                       {cumRap.danhSachPhim.map((phim, index) => {
                         return (
                           <div className="d-flex20 line-80 w-full" key={index}>
-                            <div>
+                            <div className="mb-2">
                               <img
                                 className="img-tap-film"
                                 src={phim.hinhAnh}

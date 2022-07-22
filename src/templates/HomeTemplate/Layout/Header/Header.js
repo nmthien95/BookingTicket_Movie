@@ -72,7 +72,7 @@ export default function Header() {
           >
             Movie Start
           </NavLink>
-          <ul className="items-stretch hidden space-x-3 lg:flex mb-0">
+          <ul className="items-stretch hidden space-x-3 sm:flex mb-0">
             <li className="flex ">
               <a href="#lichChieu" className="  text-theme-hover text-header" activeClassName="text-header-classActive">
                 Lịch chiếu
@@ -86,10 +86,10 @@ export default function Header() {
               </a>
             </li>
             <li className="flex">
-              <NavLink to="/news" rel="noopener noreferrer" className="text-theme-hover text-header" activeClassName="text-header-classActive	">
-                Tin Tức
+              <a href="#ungDung" className="text-theme-hover text-header" activeClassName="text-header-classActive	">
+                Ứng dụng
                 <div className="text-header-active btn-theme"></div>
-              </NavLink>
+              </a>
             </li>
             {userLogin.maLoaiNguoiDung === "QuanTri" ? (
               <li className="flex">
@@ -103,11 +103,11 @@ export default function Header() {
             )}
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex">{renderLogin()}</div>
-          <button className="p-3  text-gray-800   hover:text-gray-900 lg:hidden">
+          {/* <button className="p-3  text-gray-800   hover:text-gray-900 hidden">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 ">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-          </button>
+          </button> */}
         </div>
       </header>
     </div>

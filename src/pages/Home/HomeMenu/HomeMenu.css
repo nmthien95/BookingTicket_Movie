@@ -1,11 +1,16 @@
 .d-flex20 {
   display: flex;
+  flex-direction: column;
   padding: 20px;
   position: relative;
+  @apply md:flex-row;
 }
 .img-tap-film {
-  width: 100px;
-  height: 126px;
+  /* width: 100px;
+  height: 126px; */
+  width: 130px;
+  height: 140px;
+  margin: 0 auto;
 }
 .movie-id {
   color: #fff;

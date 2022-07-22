@@ -65,29 +65,29 @@ export default function SearchMoive() {
     setMaLichChieu(e.target.value);
   };
   return (
-    <div className="container search-moive">
+    <div className="container mx-auto search-moive">
       <div className="seacrh-container bg-slate-200 flex py-2">
         <div className="search-item basis-1/3 border-r-2 border-gray-300">
-          <select name="film" className="font-bold bg-slate-200 text-base px-4 cursor-pointer" onChange={handleChangeFlims}>
+          <select name="film" className="select-text" onChange={handleChangeFlims}>
             <option selected>Phim</option>
             {renderOptionFilm()}
           </select>
         </div>
         <div className="search-item basis-1/4 border-gray-300	border-r-2">
-          <select name="rap" className="font-bold text-base px-4 cursor-pointer bg-slate-200" onChange={handleChangeCinema}>
+          <select name="rap" className="select-text" onChange={handleChangeCinema}>
             <option selected>Rap</option>
             {renderOptionCinema()}
           </select>
         </div>
         <div className="search-item basis-1/4	border-r-2 border-gray-300">
-          <select name="ngayGioChieu" className="font-bold text-base  px-4 cursor-pointer bg-slate-200" onChange={handleShowTime}>
+          <select name="ngayGioChieu" className="select-text" onChange={handleShowTime}>
             <option selected>Ngày giờ chiếu</option>
             {renderOptionShowTime()}
           </select>
         </div>
         <div className="search-item basis-2/12 ">
           <div className="w-full h-full flex justify-center items-center">
-            <NavLink to={`/checkout/${maLichChieu}`} className="btn-theme  flex items-center justify-center px-2 py-1 h-5/6 md:text-base font-bold text-xs w-11/12">
+            <NavLink to={`/checkout/${maLichChieu}`} className="btn-theme flex items-center justify-center px-2 py-1 h-full md:text-sm font-bold text-xs w-11/12">
               MUA VÉ NGAY
             </NavLink>
           </div>
