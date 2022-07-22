@@ -28,7 +28,7 @@ h4 {
   height: 100%;
 }
 .btn-theme {
-  @apply text-slate-800 hover:text-slate-900 bg-gradient-to-r from-teal-400 to-lime-400 ease-in duration-300 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 focus:ring-4 focus:outline-none focus:ring-lime-400 rounded-lg  text-center;
+  @apply text-slate-800 hover:text-slate-900 bg-gradient-to-r from-teal-400 to-lime-400 ease-in duration-300 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400   rounded-lg  text-center;
 }
 .bg-theme {
   @apply bg-gradient-to-r from-teal-300 to-lime-300 text-slate-800;
