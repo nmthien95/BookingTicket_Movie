@@ -23,6 +23,7 @@ import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import AddNew from "./pages/Admin/Films/AddNew/AddNew";
 import Edit from "./pages/Admin/Films/Edit/Edit";
 import ShowTime from "./pages/Admin/Films/ShowTime/ShowTime";
+import DrawerMovie from "./HOC/Sidlebar/DrawerMovie";
 
 export const history = createBrowserHistory();
 
@@ -32,6 +33,9 @@ function App() {
   return (
     <div>
       <Fragment>{isLoading ? <Loading /> : ""}</Fragment>
+      <Fragment>
+        <DrawerMovie />
+      </Fragment>
       <Router history={history}>
         <Switch>
           <HomeTemplate path="/home" exact Component={Home} />

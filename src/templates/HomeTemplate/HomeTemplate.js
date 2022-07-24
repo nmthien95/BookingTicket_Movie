@@ -1,5 +1,7 @@
 import { Fragment, useEffect } from "react";
 import { Route } from "react-router";
+import DrawerMovie from "../../HOC/Sidlebar/DrawerMovie";
+
 import Footer from "./Layout/Footer/Footer";
 import Header from "./Layout/Header/Header";
 

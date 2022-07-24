@@ -5,6 +5,8 @@ import { LoginOutlined, LogoutOutlined, UserAddOutlined } from "@ant-design/icon
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { DANG_XUAT } from "../../../../redux/types/QuanLyNguoiDungType";
+import { OPEN_SIDEBAR_MENU } from "../../../../redux/types/DrawerType";
+import SideBarMenu from "../../../../components/SideBarMenu/SideBarMenu";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ export default function Header() {
       return (
         <Fragment>
           <button className="self-center p-1  border-r-2  border-slate-400 text-center">
-            <NavLink to="/login" rel="noopener noreferrer" className="flex items-center px-4 font-bold  text-md  text-slate-500 hover:text-slate-900 ">
+            <NavLink to="/login" rel="noopener noreferrer" className="flex items-center px-4 font-bold block text-md  text-slate-500 hover:text-slate-900 ">
               <LoginOutlined className="mr-1" />
               Đăng nhập
             </NavLink>
@@ -103,7 +105,12 @@ export default function Header() {
             )}
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex">{renderLogin()}</div>
-          <button className="p-3  text-gray-800   hover:text-gray-900 block lg:hidden">
+          <button
+            className=" border-slate-500 px-3  hover:border-slate-700 transition-all duration-150 text-gray-800  border rounded-lg hover:text-gray-900 block lg:hidden"
+            onClick={() => {
+              dispatch({ type: OPEN_SIDEBAR_MENU, payload: <SideBarMenu /> });
+            }}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 ">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>

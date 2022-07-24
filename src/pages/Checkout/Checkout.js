@@ -13,6 +13,8 @@ import { layThongTinNGuoiDungAction } from "../../redux/action/QuanLyNguoiDungAc
 import moment from "moment";
 import { connection } from "../../index";
 import { history } from "../../App";
+import { OPEN_SIDEBAR_MENU } from "../../redux/types/DrawerType";
+import SideBarMenu from "../../components/SideBarMenu/SideBarMenu";
 
 function Checkout(props) {
   const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachDat } = useSelector((state) => state.QuanLyDatVeReducer);
@@ -170,7 +172,7 @@ function Checkout(props) {
             </div>
           </div>
         </div>
-        <div className="col-span-12  lg:col-span-3 xl:col-span-4 relative " style={{ boxShadow: "0 0 5px grey", height: "550px" }}>
+        <div className="col-span-12 mx-10 mt-2 sm:mx-20 lg:mx-0 lg:col-span-3 xl:col-span-4 relative " style={{ boxShadow: "0 0 5px grey", height: "550px" }}>
           <h3 className="text-theme text-center font-bold text-3xl mt-4">
             {danhSachGheDangDat
               .reduce((tongTien = 0, ghe, index) => {
@@ -248,16 +250,14 @@ const { TabPane } = Tabs;
 export default function CheckoutTab(props) {
   const operations = (
     <button
+      className=" border-slate-500 px-3 py-2 hover:border-slate-700 transition-all duration-150 text-gray-800  border rounded-lg hover:text-gray-900 block lg:hidden"
       onClick={() => {
-        dispatch({
-          type: CHANGE_TAB_ACTIVE,
-          number: 1,
-        });
-        history.push("/");
+        dispatch({ type: OPEN_SIDEBAR_MENU, payload: <SideBarMenu /> });
       }}
-      className="mb-1 border-2 border-gray-700 hover:text-lime-500 text-gray-600 hover:border-lime-500 rounded-md text-md font-bold p-2 transition-all ease-linear"
     >
-      <HomeOutlined className="text-base" /> <span className="mb-0 hidden sm:inline-flex"> Trang chủ</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 ">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
     </button>
   );
   const { tabActive } = useSelector((state) => state.QuanLyDatVeReducer);
