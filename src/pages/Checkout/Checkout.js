@@ -100,9 +100,9 @@ function Checkout(props) {
     });
   };
   return (
-    <div className="container mx-auto min-h-screen mt-2">
+    <div className=" mx-auto min-h-screen mt-2">
       <div className="grid grid-cols-12 ">
-        <div className="col-span-8 mt-5 mr-20">
+        <div className="col-span-12 lg:col-span-9  xl:col-span-8 mt-5 ">
           <div className="flex flex-col items-center">
             <div className="bg-black" style={{ width: "80%", height: 15 }}></div>
             <div className={`${style["trapezoid"]} text-center relative`}>
@@ -112,24 +112,24 @@ function Checkout(props) {
             <div className="mt-10">{renderSeats()}</div>
             <div className="mt-5">
               <table className="w-full text-sm text-center text-gray-500 ">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+                <thead className="text-xs text-gray-700  bg-gray-100">
                   <tr>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="px-0 py-2">
                       Ghế chưa đặt
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="px-0 py-2">
                       Ghế đang đặt
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="px-0 py-2">
                       Ghế đã đặt
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="px-0 py-2">
                       Ghế vip
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="px-0 py-2">
                       Ghế đã được đăt
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="px-0 py-2">
                       Ghế khách khác đang đặt
                     </th>
                   </tr>
@@ -170,7 +170,7 @@ function Checkout(props) {
             </div>
           </div>
         </div>
-        <div className="col-span-4 relative " style={{ boxShadow: "0 0 5px grey", height: "550px" }}>
+        <div className="col-span-12  lg:col-span-3 xl:col-span-4 relative " style={{ boxShadow: "0 0 5px grey", height: "550px" }}>
           <h3 className="text-theme text-center font-bold text-3xl mt-4">
             {danhSachGheDangDat
               .reduce((tongTien = 0, ghe, index) => {
@@ -257,7 +257,7 @@ export default function CheckoutTab(props) {
       }}
       className="mb-1 border-2 border-gray-700 hover:text-lime-500 text-gray-600 hover:border-lime-500 rounded-md text-md font-bold p-2 transition-all ease-linear"
     >
-      <HomeOutlined /> <span className="mb-0"> Trang chủ</span>
+      <HomeOutlined className="text-base" /> <span className="mb-0 hidden sm:inline-flex"> Trang chủ</span>
     </button>
   );
   const { tabActive } = useSelector((state) => state.QuanLyDatVeReducer);

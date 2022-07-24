@@ -9,17 +9,20 @@ import { SET_CHI_TIET_PHIM } from "../../redux/types/QuanLyRapType";
 import { layThongTinChiTietPhim } from "../../redux/action/QuanLyRapAction";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
+import { useViewport } from "../../util/settings/config";
 const { TabPane } = Tabs;
 
 export default function Detail(props) {
   const filmDetal = useSelector((state) => state.QuanLyPhimReducer.filmDetail);
-  console.log("filmDetal: ", filmDetal);
+
+  const viewPort = useViewport();
+  const isMobile = viewPort.width <= 640;
+  const sizeCircle = "";
 
   const dispatch = useDispatch();
   useEffect(() => {
     let { id } = props.match.params;
     dispatch(layThongTinChiTietPhim(id));
-    console.log(id);
   }, []);
   return (
     <div
@@ -32,26 +35,36 @@ export default function Detail(props) {
         backgroundSize: "cover",
       }}
     >
-      <div className="box1">
-        <div className="grid grid-cols-12">
-          <div className="col-span-5 col-start-3">
-            <div className="grid grid-cols-3">
-              <img className="col-span-1" src={`${filmDetal.hinhAnh}`} alt="123" style={{ width: "100%", height: 300 }} />
-              <div className="col-span-2 flex flex-col justify-around text-left ml-5">
-                <p className="text-sm">
-                  Ngày chiếu:
-                  {moment(filmDetal.ngayKhoiChieu).format("dd.mm.yyyy")}
-                </p>
-                <p className="text-3xl text-white">{filmDetal.tenPhim}</p>
-                <p>{filmDetal.moTa}</p>
+      <div className="box1 container mx-auto">
+        <div className="flex  flex-col ">
+          <div className=" mb-4">
+            <div className="flex ">
+              <div className="w-1/2 sm:w-2/5 lg:w-1/3 " style={{ maxWidth: "320px" }}>
+                <img src={`${filmDetal.hinhAnh}`} alt="123" style={{ width: "100%", height: 300 }} />
+              </div>
+              <div className="w-1/2 sm:w-3/5 lg:w-2/3 pl-4">
+                <div className=" flex flex-col text-left ">
+                  <p className="text-xs text-orange-500 sm:mb-4">
+                    Ngày chiếu:
+                    {moment(filmDetal.ngayKhoiChieu).format("dddd.MMMM.yyyy")}
+                  </p>
+                  <p className="font-bold text-base sm:text-3xl text-theme mb-3 text-white">{filmDetal.tenPhim}</p>
+                  {filmDetal.moTa && isMobile ? (
+                    <p className="text-xs sm:text-base">{filmDetal.moTa.length > 250 ? filmDetal.moTa.slice(0, 250) + "..." : filmDetal.moTa}</p>
+                  ) : (
+                    <p className="text-xs sm:text-base">{filmDetal.moTa}</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-span-4">
-            <div className="ml-10 ">
-              <h3 className="  text-orange-600 text-lg font-bold pl-20 text-left m-0">Đánh giá</h3>
-              <Rate allowHalf className="text-yellow-400  text-left" style={{ paddingLeft: "3.2rem", display: "block" }} value={filmDetal.danhGia / 2} />
-              <div className={`c100 p${filmDetal.danhGia * 10} big  `}>
+          <div className=" flex justify-between sm:justify-center">
+            <div className="flex flex-col justify-around items-center sm:mr-10 ">
+              <h3 className="  text-orange-600 text-3xl font-bold  text-left m-0">Đánh giá</h3>
+              <Rate allowHalf className="text-yellow-400 text-xl sm:text-3xl text-left  " value={filmDetal.danhGia / 2} />
+            </div>
+            <div>
+              <div className={`c100 p${filmDetal.danhGia * 10} ${isMobile ? "" : "big"}`}>
                 <span>{filmDetal.danhGia * 10}%</span>
                 <div className="slice">
                   <div className="bar" />
@@ -62,7 +75,7 @@ export default function Detail(props) {
           </div>
         </div>
         <div
-          className="mt-20 mb-10 w-2/3 mx-auto container  px-5 py-5"
+          className="mt-20 mb-10 mx-auto container  px-5 py-5"
           style={{
             minHeight: 300,
             backgroundColor: "rgba(246, 246, 246, 0.897)",
@@ -70,7 +83,7 @@ export default function Detail(props) {
         >
           <Tabs defaultActiveKey="1" centered>
             <TabPane tab="Lịch chiếu" key="1">
-              <Tabs tabPosition={"left"}>
+              <Tabs tabPosition={isMobile ? "top" : "left"}>
                 {filmDetal.heThongRapChieu &&
                   filmDetal.heThongRapChieu.map((heThongRap, index) => {
                     return (
@@ -86,21 +99,23 @@ export default function Detail(props) {
                         {heThongRap.cumRapChieu &&
                           heThongRap.cumRapChieu.map((cumRap, index) => {
                             return (
-                              <div key={index}>
+                              <div key={index} className="mb-2">
                                 <div className="flex flex-row">
                                   <img style={{ width: 60, height: 60 }} src={cumRap.hinhAnh} alt="sdfsd" />
                                   <div className="ml-2 ">
-                                    <p className="text-xl leading-3 font-bold">{cumRap.tenCumRap}</p>
+                                    <p className="text-sm leading-3 font-bold">{cumRap.tenCumRap}</p>
                                     <p className="text-gray-400">{cumRap.diaChi}</p>
                                   </div>
                                 </div>
-                                <div className="thong-tin-lich-chieu grid grid-cols-4 gap-2">
+                                <div className="thong-tin-lich-chieu flex flex-wrap">
                                   {cumRap.lichChieuPhim &&
                                     cumRap.lichChieuPhim.slice(0, 4).map((lichChieu, index) => {
                                       return (
-                                        <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index} className="col-span-1  mb-2 btn-movie-schedule text-teal-600 hover:text-lime-500">
-                                          {moment(lichChieu.ngayChieuGioChieu).format("hh:mm A")}
-                                        </NavLink>
+                                        <div className="w-1/2 md:w-1/4 my-2" key={index}>
+                                          <NavLink to={`/checkout/${lichChieu.maLichChieu}`} className="block btn-movie-schedule text-teal-600 hover:text-lime-500">
+                                            {moment(lichChieu.ngayChieuGioChieu).format("hh:mm A")}
+                                          </NavLink>
+                                        </div>
                                       );
                                     })}
                                 </div>
