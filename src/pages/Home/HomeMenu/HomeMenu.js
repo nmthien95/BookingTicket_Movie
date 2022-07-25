@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 import "./HomeMenu.css";
 import moment from "moment";
-import { useViewport } from "../../../util/settings/config";
+import { useViewport } from "../../../Hook/useViewport";
 
 const { TabPane } = Tabs;
 

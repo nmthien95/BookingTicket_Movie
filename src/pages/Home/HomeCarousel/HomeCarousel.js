@@ -17,6 +17,7 @@ const contentStyle = {
 
 export default function HomeCarousel(props) {
   const { arrImg } = useSelector((state) => state.CarouselReducer);
+  console.log("arrImg: ", arrImg);
   const dispatch = useDispatch();
 
   useEffect(() => {

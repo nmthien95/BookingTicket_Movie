@@ -19,6 +19,7 @@ export default function DrawerMovie() {
           Movie start
         </a>
       }
+      style={{ backgroundColor: "rgba( 240, 248, 255, 0.5 )" }}
       width={withDrawer}
       onClose={onClose}
       closable={false}

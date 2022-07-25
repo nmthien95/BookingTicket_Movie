@@ -1,23 +1,25 @@
 import React, { useEffect } from "react";
 import "./Detail.css";
 import "../../assetss/styles/circle.css";
-import { Radio, Space, Tabs } from "antd";
+import { Tabs } from "antd";
 import { Rate } from "antd";
 
 import { useDispatch, useSelector } from "react-redux";
-import { SET_CHI_TIET_PHIM } from "../../redux/types/QuanLyRapType";
+import { useViewport } from "../../Hook/useViewport";
 import { layThongTinChiTietPhim } from "../../redux/action/QuanLyRapAction";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
-import { useViewport } from "../../util/settings/config";
+import { PlayCircleOutlined } from "@ant-design/icons";
+import { IS_SHOWING } from "../../redux/types/ModalType";
+
 const { TabPane } = Tabs;
 
 export default function Detail(props) {
   const filmDetal = useSelector((state) => state.QuanLyPhimReducer.filmDetail);
+  console.log("filmDetal: ", filmDetal);
 
   const viewPort = useViewport();
   const isMobile = viewPort.width <= 640;
-  const sizeCircle = "";
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -39,8 +41,21 @@ export default function Detail(props) {
         <div className="flex  flex-col ">
           <div className=" mb-4">
             <div className="flex ">
-              <div className="w-1/2 sm:w-2/5 lg:w-1/3 " style={{ maxWidth: "320px" }}>
+              <div className="w-1/2 sm:w-2/5 lg:w-1/3 relative " style={{ maxWidth: "320px" }}>
                 <img src={`${filmDetal.hinhAnh}`} alt="123" style={{ width: "100%", height: 300 }} />
+                <div className="detail-2">
+                  <button
+                    className="detail-3"
+                    onClick={() => {
+                      dispatch({
+                        type: IS_SHOWING,
+                        payload: filmDetal.trailer,
+                      });
+                    }}
+                  >
+                    <PlayCircleOutlined className="detail-4" />
+                  </button>
+                </div>
               </div>
               <div className="w-1/2 sm:w-3/5 lg:w-2/3 pl-4">
                 <div className=" flex flex-col text-left ">

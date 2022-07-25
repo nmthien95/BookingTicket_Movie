@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { CarouselReducer } from "./reducers/CarouselReducer";
 import { DrawerReducer } from "./reducers/DrawerReducer";
 import { LoadingReducer } from "./reducers/LoadingReducer";
+import { ShowModalReducer } from "./reducers/ModalReducer";
 import { QuanLyDatVeReducer } from "./reducers/QuanLyDatVeReducer";
 import { QuanLyNguoiDungReducer } from "./reducers/QuanLyNguoiDungReducer";
 import { QuanLyPhimReducer } from "./reducers/QuanLyPhimReducer";
@@ -15,5 +16,6 @@ const rootReducer = combineReducers({
   QuanLyDatVeReducer,
   LoadingReducer,
   DrawerReducer,
+  ShowModalReducer,
 });
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));

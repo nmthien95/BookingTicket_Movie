@@ -11,8 +11,6 @@ export default function SearchMoive() {
   const { arrFilm, filmDetail } = useSelector((state) => state.QuanLyPhimReducer);
   let [lstLichChieu, setArrLichChieu] = useState([]);
   let [maLichChieu, setMaLichChieu] = useState("");
-  console.log("filmDetail: ", filmDetail);
-  console.log(arrFilm);
 
   const renderOptionCinema = () => {
     let i = 0;
@@ -47,7 +45,11 @@ export default function SearchMoive() {
   };
   const renderOptionFilm = () => {
     return arrFilm?.map((film, index) => {
-      return <option value={film.maPhim}>{film.tenPhim}</option>;
+      return (
+        <option key={index} value={film.maPhim}>
+          {film.tenPhim}
+        </option>
+      );
     });
   };
 
@@ -58,7 +60,11 @@ export default function SearchMoive() {
   };
   const renderOptionShowTime = () => {
     return lstLichChieu?.map((lichChieu, index) => {
-      return <option value={lichChieu.maLichChieu}>{moment(lichChieu.ngayChieuGioChieu).format("DD/MM/YYYY ~ hh:mm")}</option>;
+      return (
+        <option key={index} value={lichChieu.maLichChieu}>
+          {moment(lichChieu.ngayChieuGioChieu).format("DD/MM/YYYY ~ hh:mm")}
+        </option>
+      );
     });
   };
   const handleShowTime = (e) => {

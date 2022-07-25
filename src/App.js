@@ -24,6 +24,7 @@ import AddNew from "./pages/Admin/Films/AddNew/AddNew";
 import Edit from "./pages/Admin/Films/Edit/Edit";
 import ShowTime from "./pages/Admin/Films/ShowTime/ShowTime";
 import DrawerMovie from "./HOC/Sidlebar/DrawerMovie";
+import ModalMovie from "./components/Modal/ModalMoive";
 
 export const history = createBrowserHistory();
 
@@ -35,6 +36,9 @@ function App() {
       <Fragment>{isLoading ? <Loading /> : ""}</Fragment>
       <Fragment>
         <DrawerMovie />
+      </Fragment>
+      <Fragment>
+        <ModalMovie />
       </Fragment>
       <Router history={history}>
         <Switch>

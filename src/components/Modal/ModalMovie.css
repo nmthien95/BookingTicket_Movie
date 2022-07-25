@@ -1,0 +1,74 @@
+.modal-movie {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  cursor: pointer;
+  opacity: 1;
+  animation-name: modal-movie;
+  animation-duration: 0.3s;
+  transition: all 0.3 ease-out;
+}
+@keyframes modal-movie {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+.modal-video-body {
+  max-width: 940px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: table;
+}
+.modal-video-inner {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+.modal-video-movie-wrap {
+  padding-bottom: 56.25%;
+  width: 100%;
+  height: 0;
+  position: relative;
+  background-color: #333;
+  animation-name: modal-video-inner;
+  animation-timing-function: ease-out;
+  animation-duration: 0.3s;
+  transform: translate(0);
+  transition: all 0.3 ease-out;
+}
+@keyframes modal-video-inner {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+.modal-close-button {
+  position: absolute;
+  z-index: 200;
+  top: -35px;
+  right: -35px;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+}
+.modal-video-movie-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
