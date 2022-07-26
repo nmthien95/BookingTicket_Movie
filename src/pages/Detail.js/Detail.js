@@ -38,11 +38,11 @@ export default function Detail(props) {
       }}
     >
       <div className="box1 container mx-auto">
-        <div className="flex  flex-col ">
-          <div className=" mb-4">
+        <div className="flex  flex-col lg:flex-row">
+          <div className=" mb-4 lg:w-3/4 pr-6">
             <div className="flex ">
               <div className="w-1/2 sm:w-2/5 lg:w-1/3 relative " style={{ maxWidth: "320px" }}>
-                <img src={`${filmDetal.hinhAnh}`} alt="123" style={{ width: "100%", height: 300 }} />
+                <img src={`${filmDetal.hinhAnh}`} alt="123" style={{ width: "100%", height: "100%" }} />
                 <div className="detail-2">
                   <button
                     className="detail-3"
@@ -59,26 +59,26 @@ export default function Detail(props) {
               </div>
               <div className="w-1/2 sm:w-3/5 lg:w-2/3 pl-4">
                 <div className=" flex flex-col text-left ">
-                  <p className="text-xs text-orange-500 sm:mb-4">
+                  <p className="text-base text-orange-600 sm:mb-4">
                     Ngày chiếu:
                     {moment(filmDetal.ngayKhoiChieu).format("dddd.MMMM.yyyy")}
                   </p>
-                  <p className="font-bold text-base sm:text-3xl text-theme mb-3 text-white">{filmDetal.tenPhim}</p>
+                  <p className="font-bold text-base sm:text-3xl text-theme mb-3 ">{filmDetal.tenPhim}</p>
                   {filmDetal.moTa && isMobile ? (
-                    <p className="text-xs sm:text-base">{filmDetal.moTa.length > 250 ? filmDetal.moTa.slice(0, 250) + "..." : filmDetal.moTa}</p>
+                    <p className="text-xs sm:text-base text-gray-800">{filmDetal.moTa.length > 250 ? filmDetal.moTa.slice(0, 250) + "..." : filmDetal.moTa}</p>
                   ) : (
-                    <p className="text-xs sm:text-base">{filmDetal.moTa}</p>
+                    <p className="text-xs sm:text-base text-gray-800">{filmDetal.moTa}</p>
                   )}
                 </div>
               </div>
             </div>
           </div>
-          <div className=" flex justify-between sm:justify-center">
-            <div className="flex flex-col justify-around items-center sm:mr-10 ">
+          <div className=" flex lg:flex-col lg:items-center lg:w-1/4 justify-between sm:justify-center">
+            <div className="flex flex-col justify-around items-center  ">
               <h3 className="  text-orange-600 text-3xl font-bold  text-left m-0">Đánh giá</h3>
               <Rate allowHalf className="text-yellow-400 text-xl sm:text-3xl text-left  " value={filmDetal.danhGia / 2} />
             </div>
-            <div>
+            <div className="flex justify-center">
               <div className={`c100 p${filmDetal.danhGia * 10} ${isMobile ? "" : "big"}`}>
                 <span>{filmDetal.danhGia * 10}%</span>
                 <div className="slice">

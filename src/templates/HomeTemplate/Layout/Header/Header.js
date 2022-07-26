@@ -95,7 +95,7 @@ export default function Header() {
             </li>
             {userLogin.maLoaiNguoiDung === "QuanTri" ? (
               <li className="flex">
-                <NavLink to="/admin" rel="noopener noreferrer" className="text-theme-hover text-header" activeClassName="text-header-classActive	">
+                <NavLink to="/admin/films" rel="noopener noreferrer" className="text-theme-hover text-header" activeClassName="text-header-classActive	">
                   Quản trị
                   <div className="text-header-active btn-theme"></div>
                 </NavLink>

@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./loading.css";
 export default function Loading() {
-  return (
+  const { isLoading } = useSelector((state) => state.LoadingReducer);
+  return isLoading ? (
     <div
       className="flex justify-center items-center z-50"
       style={{
@@ -19,5 +21,7 @@ export default function Loading() {
         <div className="inner three" />
       </div>
     </div>
+  ) : (
+    ""
   );
 }

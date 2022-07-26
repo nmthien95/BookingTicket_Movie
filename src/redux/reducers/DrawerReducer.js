@@ -19,7 +19,7 @@ export const DrawerReducer = (state = initialState, { type, payload }) => {
         ...state,
 
         visible: true,
-        withDrawer: 230,
+        withDrawer: 200,
         ComponentContent: payload,
       };
     default:

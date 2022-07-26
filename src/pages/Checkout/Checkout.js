@@ -250,7 +250,7 @@ const { TabPane } = Tabs;
 export default function CheckoutTab(props) {
   const operations = (
     <button
-      className=" border-slate-500 px-3 py-2 hover:border-slate-700 transition-all duration-150 text-gray-800  border rounded-lg hover:text-gray-900 block lg:hidden"
+      className=" border-slate-500 px-3 py-2 hover:border-slate-700 transition-all duration-150 text-gray-800  border rounded-lg hover:text-gray-900 block "
       onClick={() => {
         dispatch({ type: OPEN_SIDEBAR_MENU, payload: <SideBarMenu /> });
       }}

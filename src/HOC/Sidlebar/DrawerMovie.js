@@ -15,7 +15,7 @@ export default function DrawerMovie() {
   return (
     <Drawer
       title={
-        <a href="/" className="text-theme mb-0 text-3xl font-bold hover:text-transparent">
+        <a href="/" className="text-theme mb-0 text-2xl font-bold hover:text-transparent">
           Movie start
         </a>
       }
@@ -31,9 +31,8 @@ export default function DrawerMovie() {
       }}
     >
       <aside className="w-full" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3  bg-gray-50 rounded dark:bg-gray-800">{ComponentContent}</div>
+        <div className="overflow-y-auto py-4 px-3  bg-gray-50 rounded">{ComponentContent}</div>
       </aside>
-      {/* Nội dung thay đổi của drawer */}
     </Drawer>
   );
 }

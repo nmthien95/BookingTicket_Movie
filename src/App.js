@@ -29,11 +29,11 @@ import ModalMovie from "./components/Modal/ModalMoive";
 export const history = createBrowserHistory();
 
 function App() {
-  const { isLoading } = useSelector((state) => state.LoadingReducer);
-
   return (
     <div>
-      <Fragment>{isLoading ? <Loading /> : ""}</Fragment>
+      <Fragment>
+        <Loading />
+      </Fragment>
       <Fragment>
         <DrawerMovie />
       </Fragment>
